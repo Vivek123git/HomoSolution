@@ -1,0 +1,58 @@
+.todo{
+    border: 2px solid #000000;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+    padding:40px ;
+}
+.head{
+    color: red;
+
+}
+.txt{
+    background-color: rgb(185, 226, 226);
+}
+.txt:hover{
+    background-color: rgb(120, 21, 137);
+    color: white;
+}
+.btn{
+    background-color: rgb(185, 226, 226);
+}
+.btn:hover{
+    background-color: blue;
+    color: white;
+}
+
+/* Main project css */
+
+.carousel .carousel-item {
+    height: 500px;
+  }
+  
+  .carousel-item img {
+    object-fit: cover;
+    height: 500px;
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  
+  .carousel-caption h3 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-caption p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  

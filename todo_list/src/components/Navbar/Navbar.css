@@ -1,0 +1,40 @@
+.navigation {
+    padding: 20px 0;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .navigation a {
+    color: #343a40;
+    margin-right: 20px;
+  }
+  
+  .navigation .nav-link:hover,
+  .navigation .nav-item:hover .nav-link {
+    color: #007bff;
+  }
+  
+  .navigation .dropdown-menu {
+    background-color: #f8f9fa;
+    border: none;
+  }
+  
+  .navigation .dropdown-item:hover {
+    color: #007bff;
+    background-color: #f8f9fa;
+  }
+  
+  .navigation .navbar-brand {
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .navigation .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  
+  .navigation .navbar-toggler-icon {
+    background-color: #343a40;
+  }
+  

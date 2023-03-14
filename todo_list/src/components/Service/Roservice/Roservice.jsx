@@ -8,7 +8,7 @@ const Roservice=()=> {
     <section className="main-section">
       <Container>
         <Navbar/>
-        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled Electrician </h3>
+        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled RO ServiceWorker </h3>
         <Row>
           <Col md={4}>
             <Card>

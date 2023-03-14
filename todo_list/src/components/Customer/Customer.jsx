@@ -4,7 +4,7 @@ import './Customer.css';
 
 function Services() {
   return (
-    <Container className="services-container">
+    <Container className="services-container backColor">
         <h3 style={{display:"flex",justifyContent:"center",marginBottom:"35px"}}> We give Awesome Service <span style={{color:"blue"}}> See how customer love us</span> </h3>
       <Row>
         <Col xs={12} lg={6} className="service-col">

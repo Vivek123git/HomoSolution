@@ -41,7 +41,7 @@ function Service() {
                 <Card.Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis elementum pharetra.
                 </Card.Text>
-                <Button variant="primary">Learn More</Button>
+                <Link to="/actech"><Button variant="primary">Book AC Technician</Button></Link>
               </Card.Body>
             </Card>
           </Col>
@@ -53,7 +53,7 @@ function Service() {
                 <Card.Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis elementum pharetra.
                 </Card.Text>
-                <Button variant="primary">Learn More</Button>
+                <Link to="/roservice"><Button variant="primary">Book RO Service</Button></Link>
               </Card.Body>
             </Card>
           </Col>
@@ -65,7 +65,7 @@ function Service() {
                 <Card.Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis elementum pharetra.
                 </Card.Text>
-                <Button variant="primary">Learn More</Button>
+                <Link to="/cctv"><Button variant="primary">Book CCtv</Button></Link>
               </Card.Body>
             </Card>
           </Col>
@@ -77,7 +77,7 @@ function Service() {
                 <Card.Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis elementum pharetra.
                 </Card.Text>
-                <Button variant="primary">Learn More</Button>
+                <Link to="/broadband"><Button variant="primary">Book BroadBand</Button></Link>
               </Card.Body>
             </Card>
           </Col>

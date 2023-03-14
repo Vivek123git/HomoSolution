@@ -8,6 +8,7 @@ import Actech from './components/Service/Actech/Actech'
 import Roservice from './components/Service/Roservice/Roservice'
 import Cctv from './components/Service/Cctv/Cctv'
 import Broadband from './components/Service/Broadband/Broadband'
+import CreateLogin from './components/Login/CreateLogin';
 import Login from './components/Login/Login';
 
 
@@ -17,8 +18,9 @@ function App() {
      {/* <Header/> */}
      <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Login/>}/>
-        <Route exact path="/home" element={<Header/>}/>
+        <Route exact path="/create-login" element={<CreateLogin/>}/>
+        <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/" element={<Header/>}/>
         <Route exact path="/electrician" element={<Electrician/>}/>
         <Route exact path="/plumber" element={<Plumber/>}/>
         <Route exact path="/actech" element={<Actech/>}/>

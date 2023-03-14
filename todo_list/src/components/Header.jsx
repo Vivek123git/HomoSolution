@@ -14,16 +14,6 @@ import '../components/Header.css';
 function Header() {
   return (
     <Container>
-      {/* <header className="py-4">
-        <Row>
-          <Col style={{display:"flex"}}>
-          <img src={HOMOSOLUTION}/>
-           <h1>My Service Website </h1>
-           
-          </Col>
-
-        </Row>
-      </header> */}
       <Navbar/>
       <Carousel fade>
       <Carousel.Item>

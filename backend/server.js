@@ -1,55 +1,89 @@
-// Import required modules
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const url="mongodb+srv://Vivek_homo:homo123@cluster0.hqirbyj.mongodb.net/HomoDatabase?retryWrites=true&w=majority"
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+ const url = "mongodb+srv://Vivek_homo:homo123@cluster0.hqirbyj.mongodb.net/HomoDatabase?retryWrites=true&w=majority"
 
-// Create Express app
 const app = express();
+const port = 3000;
 
-// Configure middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Connect to MongoDB database
 mongoose.connect(url)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
-
-// Define user schema
-const userSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   email: String,
-  mobile: String,
   password: String
 });
 
-// Define user model
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
-// Define login route
-app.post('/login', async (req, res) => {
-  const { email, mobile, password } = req.body;
+app.use(bodyParser.urlencoded({ extended: true }));
 
-  // Find user by email/mobile number
-  const user = await User.findOne({ $or: [{ email }, { mobile }] });
+app.use(session({
+  secret: 'mysecret',
+  resave: false,
+  saveUninitialized: false
+}));
 
-  // If user is not found, return error response
-  if (!user) {
-    return res.status(401).json({ message: 'Invalid email/mobile number or password' });
-  }
-
-  // Compare password with hash stored in database
-  const isPasswordValid = bcrypt.compare(password, user.password);
-
-  // If password is invalid, return error response
-  if (!isPasswordValid) {
-    return res.status(401).json({ message: 'Invalid email/mobile number or password' });
-  }
-
-  // If login is successful, return success response
-  return res.status(200).json({ message: 'Login successful' });
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
-// Start server
-app.listen(1000, () => console.log('Server started on port 1000'));
+app.get('/login', (req, res) => {
+  res.send(`
+    <form method="POST" action="/login">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  `);
+});
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.send('Invalid email or password');
+  }
+
+  const validPassword = await bcrypt.compare(password, user.password);
+
+  if (!validPassword) {
+    return res.send('Invalid email or password');
+  }
+
+  req.session.user = user;
+  res.redirect('/home');
+});
+
+app.get('/signup', (req, res) => {
+  res.send(`
+    <form method="POST" action="/signup">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Signup</button>
+    </form>
+  `);
+});
+
+app.post('/signup', async (req, res) => {
+  const { email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = new User({ email, password: hashedPassword });
+  await user.save();
+  res.redirect('/login');
+});
+
+app.get('/home', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+
+  res.send(`Welcome ${req.session.user.email}`);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});

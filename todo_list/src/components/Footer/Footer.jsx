@@ -4,7 +4,7 @@ import './Footer.css'
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="backColor">
       <Container>
         <Row>
           <Col md={4} className="footer-section">

@@ -2,7 +2,9 @@ h1 {
     text-align: center;
     color: #0062cc;
   }
-  
+  .container{
+    max-width: 992px;
+  }
 .form-group {
     margin-bottom: 1rem;
   }
@@ -31,5 +33,12 @@ h1 {
 .logo{
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+    /* margin-top: 10%; */
+}
+.backColor{
+  background-color: #71a1e9;
+  margin: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  width: auto;
 }

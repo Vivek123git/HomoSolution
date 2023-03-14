@@ -1,16 +1,45 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React,{useState} from 'react';
+import { Container, Row, Col, Card, Button,Form } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Navbar from '../../Navbar/Navbar'
 import './Electrician.css';
+import "../../../../src/App.css"
 
 const Electrician=()=> {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+ 
+  const handleModal=(e)=>{
+    const {value}= e.target;
+    console.log(value)
+    if(value==="1"){
+      console.log("1")
+    }else{
+      console.log("2")
+    }
+  }
+
+  const handleOption1Click = () => {
+    console.log('Option 1 clicked');
+    handleClose();
+  }
+
+  const handleOption2Click = () => {
+    console.log('Option 2 clicked');
+    handleClose();
+  }
+
   return (
     <section className="main-section">
-      <Container>
-        <Navbar/>
+      <Navbar/>
+      <Container >
+        
         <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled Electrician </h3>
-        <Row>
-          <Col md={4}>
+        <Row >
+          <Col md={4} >
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2019/08/22/13/37/electrician-4423534__340.jpg" />
               <Card.Body>
@@ -18,7 +47,7 @@ const Electrician=()=> {
                 <Card.Text>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis elementum pharetra.
                 </Card.Text>
-                <Button variant="primary">Book Now</Button>
+                <Button variant="primary" onClick={handleShow}>Book Now</Button>
               </Card.Body>
             </Card>
           </Col>
@@ -84,6 +113,25 @@ const Electrician=()=> {
           </Col>
         </Row>
       </Container>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Select an option</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        
+        <Form.Select aria-label="Default select example" onChange={(e)=>handleModal(e)}>
+      <option >Open this select menu</option>
+      <option value="1">Booking By Our Platform</option>
+      <option value="2">Booking by Yourself</option>
+    </Form.Select>
+    
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Go
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </section>
   );
 }

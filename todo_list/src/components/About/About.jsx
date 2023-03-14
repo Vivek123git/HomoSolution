@@ -4,7 +4,7 @@ import './About.css';
 
 function About() {
   return (
-    <section className="about-section">
+    <section className="about-section backColor">
       <Container>
         <Row>
           <Col md={6}>

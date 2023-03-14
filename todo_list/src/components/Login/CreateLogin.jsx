@@ -3,16 +3,18 @@ import axios from "axios";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HOMOSOLUTION from '../../img/HOMOSOLUTION.png';
 import './Login.css';
-import '../../../src/App.css'
 
-const Login = () => {
+const CreateLogin = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    cnfPassword:"",
   });
-
+  const [msg,setMsg] = useState(false)
+console.log(formData.cnfPassword)
 
   const handleChange = (e) => {
+    setMsg(false)
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -34,6 +36,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(formData.password!==formData.cnfPassword){
+      setMsg(true)
     }
     else{
     axios.get("http://localhost:3000/login",data,options)
@@ -48,16 +51,16 @@ const Login = () => {
 
   return (
     <Container>
-    <Row className='justify-content-md-center backColor'>
+    <Row>
     <Col className="logo">
       <img src={HOMOSOLUTION}/>
-      <h3 >HOMOSOLUTION.com </h3>   
+      <h3 style={{marginTop:"20px"}}>HOMOSOLUTION.com </h3>   
     </Col>
     </Row>
 
-      <Row className="justify-content-md-center backColor">
+      <Row className="justify-content-md-center" style={{marginTop:"5%"}}>
         <Col xs={12} md={6} style={{color:"Black"}}>
-          <h1>Login Page</h1>
+          <h1>Create Account</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formEmail">
               <Form.Label >Email/Mobile No.</Form.Label>
@@ -92,6 +95,18 @@ const Login = () => {
               />
             </Form.Group>
 
+            <Form.Group controlId="formPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="cnfPassword"
+                value={formData.cnfPassword}
+                onChange={handleChange}
+                placeholder="Enter password"
+              />
+              {msg?<h3>Password Not matched</h3>:""}
+            </Form.Group>
+
             <Button variant="primary" type="submit">
               Submit
             </Button>
@@ -102,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CreateLogin;

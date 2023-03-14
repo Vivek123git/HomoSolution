@@ -4,7 +4,7 @@ import './Contact.css';
 
 function ContactUs() {
   return (
-    <section className="contact-section">
+    <section className="contact-section backColor">
       <Container style={{backgroundColor:""}}>
         <h2>Book your ServiceMan</h2>
         <Row>

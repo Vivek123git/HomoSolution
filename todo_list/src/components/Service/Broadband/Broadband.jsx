@@ -8,7 +8,7 @@ const Broadband=()=> {
     <section className="main-section">
       <Container>
         <Navbar/>
-        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled Electrician </h3>
+        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled BroadBand Service Eorker </h3>
         <Row>
           <Col md={4}>
             <Card>

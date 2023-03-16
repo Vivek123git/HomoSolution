@@ -2,41 +2,43 @@ import React,{useState} from 'react';
 import { Container, Row, Col, Card, Button,Form } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import Navbar from '../../Navbar/Navbar'
+import { useNavigate } from 'react-router';
 import './Electrician.css';
 import "../../../../src/App.css"
 
 const Electrician=()=> {
+  const navigate = useNavigate()
 
   const [show, setShow] = useState(false);
+  const [id,setId] = useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
  
   const handleModal=(e)=>{
     const {value}= e.target;
     console.log(value)
     if(value==="1"){
-      console.log("1")
+     setId("1")
     }else{
-      console.log("2")
+      setId("2")
     }
   }
 
-  const handleOption1Click = () => {
-    console.log('Option 1 clicked');
-    handleClose();
-  }
-
-  const handleOption2Click = () => {
-    console.log('Option 2 clicked');
-    handleClose();
+  const handleGo=()=>{
+    if(id=='1'){
+      navigate("/byown")
+    }else if(id==="2"){
+      navigate("/electrician")
+    }
   }
 
   return (
     <section className="main-section">
-      <Navbar/>
+      
       <Container >
-        
+      <Navbar/>
         <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled Electrician </h3>
         <Row >
           <Col md={4} >
@@ -121,13 +123,13 @@ const Electrician=()=> {
         
         <Form.Select aria-label="Default select example" onChange={(e)=>handleModal(e)}>
       <option >Open this select menu</option>
-      <option value="1">Booking By Our Platform</option>
-      <option value="2">Booking by Yourself</option>
+      <option value="1">Booking by Yourself</option>
+      <option value="2">Booking By Our Platform</option>
     </Form.Select>
     
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleGo}>
             Go
           </Button>
         </Modal.Footer>

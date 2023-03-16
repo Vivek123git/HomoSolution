@@ -10,6 +10,8 @@ import Cctv from './components/Service/Cctv/Cctv'
 import Broadband from './components/Service/Broadband/Broadband'
 import CreateLogin from './components/Login/CreateLogin';
 import Login from './components/Login/Login';
+import ByOwn from './components/Booking/ByOwn'
+import OurSite from './components/Booking/OurSite'
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
         <Route exact path="/roservice" element={<Roservice/>}/>
         <Route exact path="/cctv" element={<Cctv/>}/>
         <Route exact path="/broadband" element={<Broadband/>}/>
+        <Route exact path="/byown" element={<ByOwn/>}/>
+        <Route exact path="/oursite" element={<OurSite/>}/>
       </Routes>
     </BrowserRouter>
     </div>

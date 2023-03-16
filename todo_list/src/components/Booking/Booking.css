@@ -20,14 +20,8 @@
   }
   
   .main-section .card-img-top {
-    height: 210px;
+    height: 150px;
     object-fit: cover;
-    opacity: 0.6;
-    transition: transform .4s;
-  }
-  .main-section .card-img-top:hover{
-   opacity: 1;
-   transform: scale(1.1)
   }
   
   .main-section .card-title {
@@ -36,11 +30,11 @@
     /* margin-bottom: 20px; */
   }
   
-  .main-section .card-text {
+  /* .main-section .card-text {
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 20px;
-  }
+  } */
   
   .main-section .btn-primary {
     background-color: #007bff;
@@ -51,4 +45,16 @@
   .main-section .btn-primary:hover {
     background-color: #0069d9;
   }
+
+ .btnSpace{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .cardBody{
+  max-height: 430px;
+  margin: 10px;
+  max-width: 310px;
+  border:3px solid #0069d9;
+ }
   

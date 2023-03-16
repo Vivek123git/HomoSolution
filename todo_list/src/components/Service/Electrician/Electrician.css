@@ -27,7 +27,7 @@
   .main-section .card-title {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .main-section .card-text {

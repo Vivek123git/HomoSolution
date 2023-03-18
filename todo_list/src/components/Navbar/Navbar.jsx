@@ -6,9 +6,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../../src/App.css'
 
-function Header() {
+function NavbarHead() {
   return ( 
-      <Navbar bg="" expand="lg" className="navigation backColor" >
+       <Container>
+        <Navbar style={{backgroundColor:"#71a1e9"}} expand="lg" className="navigation " >
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
@@ -29,7 +30,8 @@ function Header() {
         </Nav>
       </Navbar.Collapse>
       </Navbar>
+       </Container>
   );
 }
 
-export default Header;
+export default NavbarHead;

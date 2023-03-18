@@ -14,7 +14,7 @@ import '../components/Header.css';
 function Header() {
   return (
     <>
-    
+    <section className="main-section">
     <Container>
     <Navbar/>
       <Carousel fade>
@@ -44,11 +44,12 @@ function Header() {
       </Carousel.Item>
     </Carousel>
       <Service/>
-       <About/>
         <Contact/>
+        <About/>
         <Customer/>
         <Footer/>
       </Container>
+      </section>
       </>
       )
   }

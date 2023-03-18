@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
+import '../src/components/Service/Service.css'
 import Header from './components/Header';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Electrician from './components/Service/Electrician/Electrician'

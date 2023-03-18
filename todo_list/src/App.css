@@ -58,8 +58,8 @@
   
   .backColor{
     background-color: #71a1e9;
-    margin: 40px;
-    padding: 40px;
+    /* margin: 40px; */
+    /* padding: 40px; */
     border-radius: 20px;
     width: auto;
   }

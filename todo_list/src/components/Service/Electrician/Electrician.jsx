@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button,Form } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import Navbar from '../../Navbar/Navbar'
 import { useNavigate } from 'react-router';
-import './Electrician.css';
+// import './Electrician.css';
 import "../../../../src/App.css"
 
 const Electrician=()=> {

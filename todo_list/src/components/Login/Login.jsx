@@ -4,8 +4,12 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HOMOSOLUTION from '../../img/HOMOSOLUTION.png';
 import './Login.css';
 import '../../../src/App.css'
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -33,30 +37,29 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(formData.password!==formData.cnfPassword){
-    }
-    else{
-    axios.get("http://localhost:3000/login",data,options)
+    axios.get("http://localhost:3000/signin",data,options)
     .then((res)=>{
         console.log(res)
+        navigate("/home")
     })
     .catch((error)=>{
         console.log(error)
     })
-  }
   };
 
   return (
-    <Container>
-    <Row className='justify-content-md-center backColor'>
+    <>
+    <Row className='justify-content-md-center'>
     <Col className="logo">
       <img src={HOMOSOLUTION}/>
       <h3 >HOMOSOLUTION.com </h3>   
     </Col>
     </Row>
+    <Container className='' style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"20px"}}>
+    
 
-      <Row className="justify-content-md-center backColor">
-        <Col xs={12} md={6} style={{color:"Black"}}>
+      <Row className="justify-content-md-center">
+        <Col  md={6} style={{color:"Black"}}>
           <h1>Login Page</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formEmail">
@@ -99,6 +102,7 @@ const Login = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

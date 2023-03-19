@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Navbar from '../../Navbar/Navbar'
-import './Broadband.css';
+// import './Broadband.css';
 
 const Broadband=()=> {
   return (

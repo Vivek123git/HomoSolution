@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import HOMOSOLUTION from '../../img/HOMOSOLUTION.png';
+import { useNavigate } from 'react-router';
 import './Login.css';
 
 const CreateLogin = () => {
+
+  const navigate= useNavigate()
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,10 +32,10 @@ console.log(formData.cnfPassword)
     }
   };
 
-  let data={
+  let data=JSON.stringify({
     email:formData.email,
     password:formData.password
-  }
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,9 +43,14 @@ console.log(formData.cnfPassword)
       setMsg(true)
     }
     else{
-    axios.get("http://localhost:3000/login",data,options)
+    axios.post("http://localhost:3000/register",data,options)
     .then((res)=>{
-        console.log(res)
+        // console.log(res)
+        
+          console.log("first")
+          navigate("/")
+          localStorage.setItem("user",JSON.stringify(res.data))
+        
     })
     .catch((error)=>{
         console.log(error)
@@ -50,13 +59,15 @@ console.log(formData.cnfPassword)
   };
 
   return (
-    <Container>
+    <>
     <Row>
     <Col className="logo">
       <img src={HOMOSOLUTION}/>
       <h3 style={{marginTop:"20px"}}>HOMOSOLUTION.com </h3>   
     </Col>
     </Row>
+    <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"20px"}}>
+    
 
       <Row className="justify-content-md-center" style={{marginTop:"5%"}}>
         <Col xs={12} md={6} style={{color:"Black"}}>
@@ -114,6 +125,7 @@ console.log(formData.cnfPassword)
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 

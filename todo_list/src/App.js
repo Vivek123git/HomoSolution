@@ -22,8 +22,8 @@ function App() {
       {/* <Header/> */}
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<CreateLogin />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/create" element={<CreateLogin />} />
+          <Route exact path="/" element={<Login />} />
           {/* <Route element={PrivateComponent}> */}
             <Route exact path="/home" element={<Header />} />
             <Route exact path="/electrician" element={<Electrician />} />

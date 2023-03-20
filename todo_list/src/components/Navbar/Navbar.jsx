@@ -9,11 +9,11 @@ import '../../../src/App.css'
 function NavbarHead() {
   return ( 
        <Container>
-        <Navbar style={{backgroundColor:"#71a1e9"}} expand="lg" className="navigation " >
+        <Navbar style={{backgroundColor:"#71a1e9", borderRadius:"20px",}} expand="lg" className="navigation " >
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
-          <Nav.Link as={Link}  to="/">Home</Nav.Link>
+          <Nav.Link as={Link}  to="/home">Home</Nav.Link>
           <NavDropdown title="Our Services" id="basic-nav-dropdown">
             <NavDropdown.Item as={Link} to="/electrician">Electrician</NavDropdown.Item>
             <NavDropdown.Item  as={Link} to="/plumber">Plumber</NavDropdown.Item>
@@ -23,10 +23,10 @@ function NavbarHead() {
             <NavDropdown.Item  as={Link} to="/broadband"> BroadBand Services</NavDropdown.Item>
           </NavDropdown>
           
-          <Nav.Link as={Link} to="/">About Us</Nav.Link>
-          <Nav.Link  as={Link} to="/">Contact Us</Nav.Link>
+          <Nav.Link as={Link} to="/home">About Us</Nav.Link>
+          <Nav.Link  as={Link} to="/home">Contact Us</Nav.Link>
           <Nav.Link  as={Link} to="/serviceworker">ServiceWorker</Nav.Link>
-          <Nav.Link  as={Link} to="/">Profile</Nav.Link>
+          <Nav.Link  as={Link} to="/home">Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       </Navbar>

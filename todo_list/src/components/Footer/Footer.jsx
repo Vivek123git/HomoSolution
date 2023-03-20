@@ -5,7 +5,7 @@ import './Footer.css'
 function Footer() {
   return (
     <footer >
-      <Container style={{backgroundColor:"#71a1e9"}}>
+      <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px",borderColor:"10px solid blue"}}>
         <Row>
           <Col md={4} className="footer-section ">
             <h5>Services</h5>

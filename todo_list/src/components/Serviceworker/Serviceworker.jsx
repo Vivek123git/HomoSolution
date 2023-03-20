@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Serviceworker.css";
+import Navbar from '../Navbar/Navbar'
 
-function ContactUs() {
+function ServiceWorker() {
   const [form, setForm] = useState({
     name: "",
     mobile: "",
@@ -28,8 +29,12 @@ function ContactUs() {
     });
   };
   return (
-    <section className="contact-section backColor">
-      <Container style={{ backgroundColor: "" }}>
+    <>
+    
+    <section className="contact-section ">
+    <Navbar/>
+      <Container style={{ backgroundColor: "" }}className="backColor">
+        
         <h2>Create Your account as ServiceWorker</h2>
         <Row>
           <Col >
@@ -157,7 +162,8 @@ function ContactUs() {
         </Row>
       </Container>
     </section>
+    </>
   );
 }
 
-export default ContactUs;
+export default ServiceWorker;

@@ -5,6 +5,8 @@ import HOMOSOLUTION from '../../img/HOMOSOLUTION.png';
 import './Login.css';
 import '../../../src/App.css'
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import HomeService from '../../img/HomeService.mp4'
 
 const Login = () => {
 
@@ -55,7 +57,7 @@ const Login = () => {
       <h3 >HOMOSOLUTION.com </h3>   
     </Col>
     </Row>
-    <Container className='' style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"20px"}}>
+    <Container className='' style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"100px"}}>
     
 
       <Row className="justify-content-md-center">
@@ -95,13 +97,24 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
+            <Row className=''> 
+           <Col md={4}>
+           <Button variant="primary" type="submit">
+              Login
             </Button>
+           </Col>
+            <Col className='d-flex'>
+            <p style={{marginTop:"15px"}}>If you dont have account ? </p>
+            <Link to="/create"><Button variant="primary" type="submit">
+              Create
+            </Button></Link>
+            </Col>
+            </Row>
           </Form>
         </Col>
       </Row>
     </Container>
+    {/* <video autoPlay muted className='video' src={HomeService}></video> */}
     </>
   );
 };

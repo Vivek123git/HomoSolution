@@ -48,7 +48,7 @@ console.log(formData.cnfPassword)
         // console.log(res)
         
           console.log("first")
-          navigate("/")
+          navigate("/home")
           localStorage.setItem("user",JSON.stringify(res.data))
         
     })
@@ -66,7 +66,7 @@ console.log(formData.cnfPassword)
       <h3 style={{marginTop:"20px"}}>HOMOSOLUTION.com </h3>   
     </Col>
     </Row>
-    <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"20px"}}>
+    <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"80px"}}>
     
 
       <Row className="justify-content-md-center" style={{marginTop:"5%"}}>

@@ -58,11 +58,21 @@
   
   .backColor{
     background-color: #71a1e9;
-    margin: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     /* padding: 40px; */
     border-radius: 20px;
     width: auto;
   }
+
+  @media screen and (max-width: 768px) {
+    .backColor {
+    background-color: #71a1e9;
+    border-radius: 20px;
+    width: auto;
+    }
+  }
+
   .logo{
     display: flex;
     justify-content: center;

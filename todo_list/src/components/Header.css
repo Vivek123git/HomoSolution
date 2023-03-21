@@ -1,4 +1,4 @@
-
+/* 
 .col img{
     height: 90px;
 }
@@ -43,33 +43,32 @@
   @keyframes example {
     0%   {background-color:white;color: blue; left:50%; top:0px;}
     /* 25%  {background-color:white;color: blue; left:450px; top:0px;} */
-    50%  {background-color:blue;color: white; left:50%; top:300px;}
+    /* 50%  {background-color:blue;color: white; left:50%; top:300px;} */
     /* 75%  {background-color:white;color: blue; left:0px; top:200px;} */
-    100% { left:50%; top:300px;}
-  }
+    /* 100% { left:50%; top:300px;} */
+  /* } */
   
-  .carousel-caption h3 {
+  /* .carousel-caption h3 {
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 20px;
     /* background-color: darkslateblue; */
-    font-family: initial;
-    text-decoration: underline;
-  }
-  .carousel-caption btn{
+    /* font-family: initial;
+    text-decoration: underline; */
+  /* } */
+  /* .carousel-caption btn{
     font-size: 36px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
     /* background-color: darkslateblue; */
-    font-family: initial;
+    /* font-family: initial;
     text-decoration: underline;
   }
-  
-  .carousel-caption p {
+   */
+  /* .carousel-caption p {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.6; */
     /* background-color: darkslateblue; */
-    font-family: initial;
-    text-decoration: underline;
-  }
-  
+    /* font-family: initial;
+    text-decoration: underline; */
+  /* } */ 

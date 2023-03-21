@@ -6,7 +6,7 @@ function About() {
   return (
     <section className="about-section backColor">
       <Container>
-        <Row>
+        <Row style={{padding:"40px"}}>
           <Col md={6}>
             <Image src="https://via.placeholder.com/600x400" alt="About Us" fluid />
           </Col>

@@ -9,19 +9,21 @@ function Footer() {
         <Row>
           <Col md={4} className="footer-section ">
             <h5>Services</h5>
-            <ul className="list-unstyled">
-              <li>Web Design</li>
-              <li>Web Development</li>
-              <li>SEO</li>
-              <li>Content Writing</li>
+            <ul className="list-unstyled text-light">
+              <li>Electrician</li>
+              <li>Plumbering</li>
+              <li>AC Technician</li>
+              <li>RO repairing</li>
+              <li>CCTV Services</li>
+              <li>BroadBand Services</li>
             </ul>
           </Col>
           <Col md={4} className="footer-section ">
             <h5>Contact Us</h5>
             <ul className="list-unstyled">
-              <li>123 Main Street</li>
-              <li>Suite 300</li>
-              <li>New York, NY 10001</li>
+              <li>Lucknow , Chinhat </li>
+              <li>Matiyari</li>
+              <li>Deva Road, Woods Apartment</li>
               <li>555-555-5555</li>
               <li>info@yoursite.com</li>
             </ul>

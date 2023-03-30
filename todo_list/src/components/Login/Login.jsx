@@ -6,7 +6,7 @@ import './Login.css';
 import '../../../src/App.css'
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import HomeService from '../../img/HomeService.mp4'
+
 
 const Login = () => {
 
@@ -54,7 +54,9 @@ const Login = () => {
     <Row className='justify-content-md-center'>
     <Col className="logo">
       <img src={HOMOSOLUTION}/>
-      <h3 >HOMOSOLUTION.com </h3>   
+      <div className="header">
+        <h1>Welcome to Our Home Services Website</h1>
+        </div>   
     </Col>
     </Row>
     <Container className='' style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"100px"}}>

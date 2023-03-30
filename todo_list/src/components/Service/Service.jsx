@@ -1,9 +1,33 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+ import axios from 'axios';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Service.css';
 
 function Service() {
+
+  const [state,setState] = useState({
+    title:"",
+    text:""
+  })
+
+  const [services,setService] = useState([])
+
+ const fetchServiceData=()=>{
+  axios.get("")
+  .then((res)=>{
+      setService(res.data)
+  })
+  .catch((err)=>{
+    console.log(err.msg)
+  })
+ }
+  
+
+  useEffect(()=>{
+    fetchServiceData()
+  })
+
   return (
     <section className="main-section">
       {/* <Container> */}

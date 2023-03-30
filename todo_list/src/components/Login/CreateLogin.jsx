@@ -63,7 +63,9 @@ console.log(formData.cnfPassword)
     <Row>
     <Col className="logo">
       <img src={HOMOSOLUTION}/>
-      <h3 style={{marginTop:"20px"}}>HOMOSOLUTION.com </h3>   
+      <div className="header">
+        <h1>Welcome to Our Home Services Website</h1>
+        </div>  
     </Col>
     </Row>
     <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px", padding:"20px" , marginTop:"80px"}}>

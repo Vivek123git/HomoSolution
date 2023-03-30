@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
+import team from '../../img/team.png.jpg'
 import './About.css';
 
 function About() {
@@ -8,7 +9,7 @@ function About() {
       <Container>
         <Row style={{padding:"40px"}}>
           <Col md={6}>
-            <Image src="https://via.placeholder.com/600x400" alt="About Us" fluid />
+            <Image src={team} alt="About Us" fluid />
           </Col>
           <Col md={6}>
             <h2>About Us</h2>

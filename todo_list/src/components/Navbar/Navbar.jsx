@@ -8,7 +8,8 @@ import '../../../src/App.css'
 
 function NavbarHead() {
   return ( 
-       <Container>
+     <>
+        {/* <Container> */}
         <Navbar style={{backgroundColor:"#71a1e9", borderRadius:"20px",}} expand="lg" className="navigation " >
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
@@ -30,7 +31,8 @@ function NavbarHead() {
         </Nav>
       </Navbar.Collapse>
       </Navbar>
-       </Container>
+       {/* </Container> */}
+     </>
   );
 }
 

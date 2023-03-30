@@ -7,45 +7,71 @@ import './Service.css';
 function Service() {
 
   const [state,setState] = useState({
-    title:"",
-    text:""
+    image:"",
+    heading:"",
+    paragraph:"",
   })
 
-  const [services,setService] = useState([])
+  const [service,setService] = useState([])
+
+  const options = {
+    headers: {
+        'Content-Type': 'application/json',
+    }
+  };
+
+  // let data=JSON.stringify({
+  //   email:state.email,
+  //   password:state.password,
+  //   name:state.name,
+  //   mobile:state.mobile
+  // })
 
  const fetchServiceData=()=>{
-  axios.get("")
+
+  axios.get("https://onehomesolution.000webhostapp.com/fetch-service",{options})
   .then((res)=>{
-      setService(res.data)
+      setService(res.data.data)
   })
   .catch((err)=>{
     console.log(err.msg)
   })
  }
-  
+  console.log(service.length,"shsh")
 
   useEffect(()=>{
     fetchServiceData()
-  })
+  },[])
 
   return (
     <section className="main-section">
       {/* <Container> */}
         <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Our Services</h3>
         <Row>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          {service.length>0?
+          service.map((elem,index)=>{
+            console.log(elem,"elem")
+            return (
+             
+              <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
             <Card>
-              <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2019/08/22/13/37/electrician-4423534__340.jpg" />
+              <Card.Img variant="top" src={elem.image} />
               <Card.Body>
-                <Card.Title>Electrician Services</Card.Title>
+                <Card.Title>{elem.heading}</Card.Title>
                 <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis .
+                  {elem.paragraph}
                 </Card.Text>
                 <Link to="/electrician"><Button variant="primary">Book Electrician</Button></Link>
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+         
+            )
+          })
+          :""}
+ </Row>
+
+          {/* <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2021/04/21/02/43/plumber-6195292__340.png" />
               <Card.Body>
@@ -104,8 +130,8 @@ function Service() {
                 <Link to="/broadband"><Button variant="primary">Book BroadBand</Button></Link>
               </Card.Body>
             </Card>
-          </Col>
-        </Row>
+          </Col> */}
+       
       {/* </Container> */}
     </section>
   );

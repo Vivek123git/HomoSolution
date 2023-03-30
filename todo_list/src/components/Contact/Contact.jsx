@@ -1,23 +1,90 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import axios from "axios";
 import "./Contact.css";
+import { Navigate, useNavigate } from "react-router";
 
 function ContactUs() {
+  const navigate = useNavigate()
+
   const [form, setForm] = useState({
     name: "",
     mobile: "",
     address: "",
     state: "",
     city: "",
-    category: "",
+    service:"",
     description: "",
     near:"",
     pin:""
   });
 
+  const handleSelect=(e)=>{
+    const {value} = e.target;
+    if(value==="1"){
+     setForm({
+      ...form,
+      service:"Electrician"
+     })
+    }else if(value==="2"){
+      setForm({
+        ...form,
+        service:"Plumbering"
+       })
+    }else if(value==="3"){
+      setForm({
+        ...form,
+        service:"AC Services"
+       })
+    }else if(value==="4"){
+      setForm({
+        ...form,
+        service:"RO Services"
+       })
+    }else if(value==="5"){
+      setForm({
+        ...form,
+        service:"CCTV Services"
+       })
+    }else if(value==="6"){
+      setForm({
+        ...form,
+        service:"BroadBand Services"
+       })
+    }
+  }
+
+
+  const options = {
+    headers: {
+        'Content-Type': 'application/json',
+    }
+  };
+
+  let data=JSON.stringify({
+    name:form.name,
+    service:form.service,
+    mobile:form.mobile,
+    description:form.description,
+    address:form.address,
+    state:form.state,
+    city:form.city,
+    landmark: form.near,
+    pincode:form.pincode
+  
+  })
+
   const handleSubmit = (e) => {
+    console.log("first")
     e.preventDefault();
-    console.log(form);
+    axios.post("https://onehomesolution.000webhostapp.com/booking",data,{options})
+    .then((res)=>{
+        console.log(res.data)
+        navigate("/home")
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
   };
 
   const handlehange = (e) => {
@@ -61,10 +128,13 @@ function ContactUs() {
 
               <Form.Group controlId="formService">
                 <Form.Label>Service</Form.Label>
-                <Form.Control as="select">
-                  <option>Electrician</option>
-                  <option>Plumbing</option>
-                  <option>AC Technician</option>
+                <Form.Control as="select" onChange={handleSelect}>
+                  <option value={1}>Electrician</option>
+                  <option value={2}>Plumbing</option>
+                  <option value={3}>AC Technician</option>
+                  <option value={4}>RO Services</option>
+                  <option value={5}>CCTV Services</option>
+                  <option value={6}>BroadBand Services</option>
                 </Form.Control>
               </Form.Group>
 

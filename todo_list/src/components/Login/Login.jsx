@@ -39,10 +39,12 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:3000/signin",data,options)
+    axios.get("https://onehomesolution.000webhostapp.com/ragister",data,{options})
     .then((res)=>{
-        console.log(res)
+        if(res.data.status){
+          console.log(res)
         navigate("/home")
+        }
     })
     .catch((error)=>{
         console.log(error)
@@ -74,6 +76,7 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter email or mobile no."
+                required
               />
             </Form.Group>
 
@@ -96,6 +99,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter password"
+                required
               />
             </Form.Group>
 

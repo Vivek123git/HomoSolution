@@ -29,7 +29,7 @@ function App() {
             <Route exact path="/home" element={<Header />} />
             <Route exact path="/electrician" element={<Electrician />} />
             <Route exact path="/plumber" element={<Plumber />} />
-            <Route exact path="/actech" element={<Actech />} />
+            <Route exact path="/actech" element={<PrivateComponent><Actech /></PrivateComponent>} />
             <Route exact path="/roservice" element={<Roservice />} />
             <Route exact path="/cctv" element={<Cctv />} />
             <Route exact path="/broadband" element={<Broadband />} />

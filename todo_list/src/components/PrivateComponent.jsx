@@ -1,11 +1,16 @@
 import React from 'react'
-import {useNavigate,Outlet} from 'react-router'
+import { Navigate} from 'react-router'
 
-const PrivateComponent = () => {
-    const navigate = useNavigate();
-    const auth = localStorage.getItem('user')
+const PrivateComponent = ({children}) => {
+
+    const auth = JSON.parse(localStorage.getItem('state'))
+   
+    if(auth && auth.login && auth.login.isAuthenticated && auth.login.user){
+      return children;
+    }else{
+      return <Navigate to ="/"/>;
+    }
     
-  return auth?<Outlet/>:navigate('/');
 }
 
 export default PrivateComponent

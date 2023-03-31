@@ -1,19 +1,15 @@
-import axios from "axios";
+import { commonAxios } from "../components/CommonAxios";
 
-const options = {
-  headers: {
-    'Content-Type': 'application/json',
-  }
-};
+
 
 export const createAccount = (data, navigate) => (dispatch, getState) => {
-  axios.post("https://onehomesolution.000webhostapp.com/ragister", data, {options})
+  localStorage.clear();
+  commonAxios("ragister", data, dispatch)
     .then((res) => {
       const data = res.data;
       if (res.status) {
-        console.log("first");
         navigate("/home");
-        localStorage.setItem("user", JSON.stringify(res.data));
+        // localStorage.setItem("user", JSON.stringify(res.data));
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
       } else {
         dispatch({ type: "LOGIN_FAILURE", error: data.error });

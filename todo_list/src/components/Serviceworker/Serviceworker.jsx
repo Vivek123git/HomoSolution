@@ -2,23 +2,77 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Serviceworker.css";
 import Navbar from '../Navbar/Navbar'
+import { useDispatch } from "react-redux";
+import { onCreateServiceman } from "../../Action/ServiceAction";
+import { useNavigate } from "react-router";
 
 function ServiceWorker() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState({
     name: "",
     mobile: "",
     address: "",
-    state: "",
-    city: "",
-    category: "",
-    description: "",
-    near:"",
-    pin:""
+    service: "",
+    skills:"",
+    img:'',
+    aadhar:"",
+    password:"",
+    
   });
+
+  const handleSelect=(e)=>{
+    const {value} = e.target;
+    if(value==="1"){
+     setForm({
+      ...form,
+      service:"Electrician"
+     })
+    }else if(value==="2"){
+      setForm({
+        ...form,
+        service:"Plumbering"
+       })
+    }else if(value==="3"){
+      setForm({
+        ...form,
+        service:"AC Services"
+       })
+    }else if(value==="4"){
+      setForm({
+        ...form,
+        service:"RO Services"
+       })
+    }else if(value==="5"){
+      setForm({
+        ...form,
+        service:"CCTV Services"
+       })
+    }else if(value==="6"){
+      setForm({
+        ...form,
+        service:"BroadBand Services"
+       })
+    }
+  }
+
+  const data = {
+    name:form.name,
+    service:form.service,
+    skills:form.skills,
+    mobile:form.mobile,
+    description:form.description,
+    address:form.address,
+    password:form.password,
+   img:form.img,
+   aadhar:form.aadhar,
+   password:form.password
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    dispatch(onCreateServiceman(data))
   };
 
   const handlehange = (e) => {
@@ -28,6 +82,11 @@ function ServiceWorker() {
       [name]: value,
     });
   };
+
+  const handleCreate=()=>{
+    navigate("/serviceworkerprofile")
+  }
+
   return (
     <>
     
@@ -74,12 +133,16 @@ function ServiceWorker() {
                 <Form.Control
                   as="select"
                 //   value={selectBox2}
-                //   onChange={handleSelectBox2Change}
+                  onChange={handleSelect}
                   required
                 >
                   <option value="">Select an option</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
+                  <option value={1}>Electrician</option>
+                  <option value={2}>Plumbing</option>
+                  <option value={3}>AC Technician</option>
+                  <option value={4}>RO Services</option>
+                  <option value={5}>CCTV Services</option>
+                  <option value={6}>BroadBand Services</option>
                 </Form.Control>
               </Form.Group>
 
@@ -116,14 +179,16 @@ function ServiceWorker() {
                     type="file"
                     accept="image/*"
                     // onChange={handleImageUpload}
+                    value={form.img}
                   />
                 </Form.Group>
                 <Form.Group as={Col}>
                   <Form.Label>Upload Your Aadhar Card (pdf)</Form.Label>
                   <Form.Control
                     type="file"
-                    accept=".pdf"
+                    accept=".pdf/jpg"
                     // onChange={handlePdfUpload}
+                    value={form.aadhar}
                   />
                 </Form.Group>
               </Row>
@@ -152,7 +217,7 @@ function ServiceWorker() {
               </Row>
 
               <Row>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={handleCreate}>
                 Create Account
               </Button>
              

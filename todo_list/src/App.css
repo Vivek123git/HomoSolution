@@ -28,6 +28,12 @@ body {
   font-weight: 700;
   color: #222;
   }
+
+  p{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 5px; 
+  }
   
   a {
   color: #587a9e;
@@ -236,13 +242,13 @@ min-height: 100%;
   .main-section h2 {
   font-size: 36px;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   }
   
   .main-section p {
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   }
   
   .main-section .card {
@@ -268,15 +274,18 @@ min-height: 100%;
   }
   
   .main-section .card-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    /* margin-bottom: 20px; */
+    background-color: cornflowerblue;
+    padding: 5px;
+    border-radius: 5px;
   }
   
   .main-section .card-text {
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   }
   
   .main-section .btn-primary {
@@ -342,7 +351,7 @@ min-height: 100%;
   align-items: center;
  }
  .cardBody{
-  max-height: 470px;
+  max-height: 485px;
   margin: 10px;
   max-width: 310px;
   border:3px solid #0069d9;
@@ -488,3 +497,7 @@ min-height: 100%;
     font-size: 14px;
   }
   
+  .loader{
+    height: 70px;
+    width: 70px;
+  }

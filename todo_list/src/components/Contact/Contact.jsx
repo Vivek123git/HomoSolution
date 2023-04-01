@@ -3,8 +3,11 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import "./Contact.css";
 import { Navigate, useNavigate } from "react-router";
+import { onBookingServiceman } from "../../Action/ServiceAction";
+import { useDispatch } from "react-redux";
 
 function ContactUs() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
@@ -54,13 +57,6 @@ function ContactUs() {
     }
   }
 
-
-  const options = {
-    headers: {
-        'Content-Type': 'application/json',
-    }
-  };
-
   let data=JSON.stringify({
     name:form.name,
     service:form.service,
@@ -75,16 +71,8 @@ function ContactUs() {
   })
 
   const handleSubmit = (e) => {
-    console.log("first")
     e.preventDefault();
-    axios.post("https://onehomesolution.000webhostapp.com/booking",data,{options})
-    .then((res)=>{
-        console.log(res.data)
-        navigate("/home")
-    })
-    .catch((error)=>{
-        console.log(error)
-    })
+    dispatch(onBookingServiceman(data))
   };
 
   const handlehange = (e) => {
@@ -129,6 +117,7 @@ function ContactUs() {
               <Form.Group controlId="formService">
                 <Form.Label>Service</Form.Label>
                 <Form.Control as="select" onChange={handleSelect}>
+                <option value="">Select an option</option>
                   <option value={1}>Electrician</option>
                   <option value={2}>Plumbing</option>
                   <option value={3}>AC Technician</option>

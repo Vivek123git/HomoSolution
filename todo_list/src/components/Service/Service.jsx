@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
  import axios from 'axios';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 import './Service.css';
 
@@ -37,7 +38,6 @@ function Service() {
     console.log(err.msg)
   })
  }
-  console.log(service.length,"shsh")
 
   useEffect(()=>{
     fetchServiceData()
@@ -47,10 +47,9 @@ function Service() {
     <section className="main-section">
       {/* <Container> */}
         <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Our Services</h3>
-        <Row>
-          {service.length>0?
+        <Row style={{justifyContent:"center"}}>
+          {service.length > 0?
           service.map((elem,index)=>{
-            console.log(elem,"elem")
             return (
              
               <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
@@ -68,7 +67,7 @@ function Service() {
          
             )
           })
-          :""}
+          :<Spinner className='loader' animation="border" variant="primary" size='xxl'/>}
  </Row>
 
           {/* <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">

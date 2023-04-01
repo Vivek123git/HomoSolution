@@ -15,7 +15,8 @@ import ByOwn from "./components/Booking/ByOwn";
 import OurSite from "./components/Booking/OurSite";
 import ServiceWorker from "./components/Serviceworker/Serviceworker";
 import PrivateComponent from "./components/PrivateComponent";
-
+import ServiceWorkerProfile from "./components/Serviceworker/ServiceworkerProfile";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           <Route exact path="/create" element={<CreateLogin />} />
           <Route exact path="/" element={<Login />} />
-          {/* <Route element={PrivateComponent}> */}
+         
             <Route exact path="/home" element={<Header />} />
             <Route exact path="/electrician" element={<Electrician />} />
             <Route exact path="/plumber" element={<Plumber />} />
@@ -36,7 +37,9 @@ function App() {
             <Route exact path="/byown" element={<ByOwn />} />
             <Route exact path="/oursite" element={<OurSite />} />
             <Route exact path="/serviceworker" element={<ServiceWorker />} />
-          {/* </Route> */}
+            <Route exact path="/serviceworkerprofile" element={<ServiceWorkerProfile />} />
+            <Route exact path="/userprofile" element={<UserProfile />} />
+         
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown,Form } from 'react-bootstrap';
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -11,22 +11,37 @@ function NavbarHead() {
   const navigate = useNavigate();
 
   const [show,setShow] = useState(false)
+  const [show1,setShow1] = useState(false)
+  const [form,setForm] = useState({
+    mobile:"",
+    password:""
+  })
 
   const handleShow =()=> setShow(true)
+  const handleShow1=()=> {
+    setShow1(true)
+    handleClose(false)
+  }
 
   const handleClose = ()=> setShow(false)
+  const handleClose1 = ()=> setShow1(false)
 
   const handleCreate=()=>{
     navigate("/serviceworker")
   }
-  const handleLogin = ()=>{
-    navigate("/serviceworkerprofile")
+
+  const handleChange=()=>{
+
+  }
+
+  const handleSubmit=()=>{
+navigate("/serviceworkerProfile")
   }
 
   return ( 
      <>
         {/* <Container> */}
-        <Navbar style={{backgroundColor:"#71a1e9", borderRadius:"20px",}} expand="lg" className="navigation " >
+        <Navbar style={{backgroundColor:"#71a1e9", borderRadius:"0px",}} expand="lg" className="navigation " >
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
@@ -42,8 +57,8 @@ function NavbarHead() {
           
           <Nav.Link as={Link} to="/home">About Us</Nav.Link>
           <Nav.Link  as={Link} to="/home">Contact Us</Nav.Link>
-          <Nav.Link onClick={handleShow}>ServiceWorker</Nav.Link>
-          <Nav.Link  as={Link} to="/userprofile">Profile</Nav.Link>
+          <Nav.Link onClick={handleShow}>ServiceWorker Account</Nav.Link>
+          <Nav.Link  as={Link} to="/userprofile">User Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       </Navbar>
@@ -80,13 +95,47 @@ function NavbarHead() {
       <Button variant="success" size="lg" onClick={handleCreate} className="my-2 w-100">
         Create account
       </Button>
-      <Button variant="primary" size="lg" onClick={handleLogin} className="my-2 w-100">
+      <Button variant="primary" size="lg" onClick={handleShow1} className="my-2 w-100">
         Login
       </Button>
     </div>
   </Modal.Footer>
 </Modal>
 
+<>
+<Modal show={show1} onHide={handleClose1}>
+        <Modal.Header closeButton>
+          <Modal.Title>Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Mobile No.</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter Mobile No."
+                value={form.mobile}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={form.password}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+</>
 
      </>
   );

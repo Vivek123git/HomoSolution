@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Image, Form, Button, Table } from "react-bootstrap";
 import { Modal } from 'react-bootstrap';
 import Rating from 'react-rating-stars-component';
+import Navbar from './Navbar/Navbar'
 
 const UserProfile = () => {
 
@@ -23,7 +24,11 @@ const UserProfile = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
-    <Container>
+    <section className="main-section">
+    
+    <Container className="backColor">
+    <Navbar />
+      <h1>User Profile</h1>
       <Row style={{padding:"20px"}}>
         <Col xs={12} md={4} >
           <Image style={{maxWidth:"200px"}} src="https://img.freepik.com/free-vector/repair-elements-round-template_1284-37691.jpg?w=740&t=st=1680349046~exp=1680349646~hmac=01f506fa402adb9a53b74df1f76fa944ac021ca14fcf1875cc7ead5d08f6cb62" roundedCircle />
@@ -128,7 +133,7 @@ const UserProfile = () => {
       </Modal>
       </>
     </Container>
-
+    </section>
     
   );
 };

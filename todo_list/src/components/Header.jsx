@@ -14,9 +14,10 @@ import '../components/Header.css';
 function Header() {
   return (
     <>
+    <Navbar/>
     <section className="main-section">
     <Container>
-    <Navbar/>
+    
       <Carousel fade>
       <Carousel.Item>
         <img className="d-block w-100" src="https://cdn.pixabay.com/photo/2019/08/22/13/37/electrician-4423534__340.jpg" alt="First slide" />
@@ -47,9 +48,10 @@ function Header() {
         <Contact/>
         <About/>
         <Customer/>
-        <Footer/>
+        
       </Container>
       </section>
+      <Footer/>
       </>
       )
   }

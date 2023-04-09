@@ -5,8 +5,8 @@ import './Footer.css'
 function Footer() {
   return (
     <footer >
-      <Container style={{backgroundColor:"#71a1e9", borderRadius:"20px",borderColor:"10px solid blue",padding:"40px"}}>
-        <Row>
+      {/* <Container style={{backgroundColor:"#71a1e9", borderRadius:"0px",borderColor:"10px solid blue",padding:"40px"}}> */}
+        <Row style={{backgroundColor:"#71a1e9", borderRadius:"0px",borderColor:"10px solid blue",padding:"20px"}}>
           <Col md={4} className="footer-section ">
             <h5>Services</h5>
             <ul className="list-unstyled text-light">
@@ -33,7 +33,7 @@ function Footer() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit enim a metus rhoncus, non facilisis libero sagittis. </p>
           </Col>
         </Row>
-      </Container>
+      {/* </Container> */}
     </footer>
   );
 }

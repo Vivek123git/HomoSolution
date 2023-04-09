@@ -39,7 +39,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.get("https://onehomesolution.000webhostapp.com/ragister",data,{options})
+    axios.post("https://onehomesolution.000webhostapp.com/login-user",data,{options})
     .then((res)=>{
         if(res.data.status){
           console.log(res)

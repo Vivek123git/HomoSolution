@@ -5,7 +5,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
-  background-color: #a9b7e0;
+  background-color: #ffffff;
   }
 
   .header {
@@ -14,6 +14,16 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 2rem;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .row {
+      width: 100%;
+    max-width: 100%;
+    /* padding-right: calc(var(--bs-gutter-x) * .5); */
+    /* padding-left: calc(var(--bs-gutter-x) * .5); */
+    margin-top: var(--bs-gutter-y); /* replace red with the desired color */
+    }
   }
 
   /* body {
@@ -465,12 +475,12 @@ min-height: 100%;
 .footer {
     background-color:#1a5ec3;
     padding: 40px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     border-radius: 10px;
   }
   
   .footer-section {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
   
   .footer h5 {

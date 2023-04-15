@@ -7,8 +7,8 @@ import { onBookingServiceman } from "../../Action/ServiceAction";
 import { useDispatch } from "react-redux";
 
 function ContactUs() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
@@ -16,63 +16,62 @@ function ContactUs() {
     address: "",
     state: "",
     city: "",
-    service:"",
+    service: "",
     description: "",
-    near:"",
-    pin:""
+    near: "",
+    pin: "",
   });
 
-  const handleSelect=(e)=>{
-    const {value} = e.target;
-    if(value==="1"){
-     setForm({
-      ...form,
-      service:"Electrician"
-     })
-    }else if(value==="2"){
+  const handleSelect = (e) => {
+    const { value } = e.target;
+    if (value === "1") {
       setForm({
         ...form,
-        service:"Plumbering"
-       })
-    }else if(value==="3"){
+        service: "Electrician",
+      });
+    } else if (value === "2") {
       setForm({
         ...form,
-        service:"AC Services"
-       })
-    }else if(value==="4"){
+        service: "Plumbering",
+      });
+    } else if (value === "3") {
       setForm({
         ...form,
-        service:"RO Services"
-       })
-    }else if(value==="5"){
+        service: "AC Services",
+      });
+    } else if (value === "4") {
       setForm({
         ...form,
-        service:"CCTV Services"
-       })
-    }else if(value==="6"){
+        service: "RO Services",
+      });
+    } else if (value === "5") {
       setForm({
         ...form,
-        service:"BroadBand Services"
-       })
+        service: "CCTV Services",
+      });
+    } else if (value === "6") {
+      setForm({
+        ...form,
+        service: "BroadBand Services",
+      });
     }
-  }
+  };
 
-  let data=JSON.stringify({
-    name:form.name,
-    service:form.service,
-    mobile:form.mobile,
-    description:form.description,
-    address:form.address,
-    state:form.state,
-    city:form.city,
+  let data = JSON.stringify({
+    name: form.name,
+    service: form.service,
+    mobile: form.mobile,
+    description: form.description,
+    address: form.address,
+    state: form.state,
+    city: form.city,
     landmark: form.near,
-    pincode:form.pincode
-  
-  })
+    pincode: form.pincode,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(onBookingServiceman(data))
+    dispatch(onBookingServiceman(data));
   };
 
   const handlehange = (e) => {
@@ -83,15 +82,29 @@ function ContactUs() {
     });
   };
   return (
-    <section className="contact-section backColor">
-      <Container style={{ backgroundColor: "" }}>
-        <h2>Book your ServiceMan</h2>
-        <Row>
-          <Col >
-          <h4 >Fill this form we will contact you soon...</h4>
-            <Form onSubmit={handleSubmit}>
-              <Row>
-                <Form.Group as={Col} controlId="formName">
+    <section className="contact-section ">
+      <div className="container">
+        <div className="row">
+          <div className="contact_heading text-center py-4">
+            <h3>Book your ServiceMan</h3>
+          </div>
+        </div>
+      </div>
+      <div className="row justify-content-center">
+        <div className="col-md-9">
+          <h4
+            style={{
+              fontSize: "18px",
+              paddingTop: "15px",
+              paddingBottom: "15px",
+            }}
+          >
+            Fill this form we will contact you soon...
+          </h4>
+          <Form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formName" className="input_wrap ">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
@@ -101,8 +114,9 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formMobile">
+              </div>
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formMobile" className="input_wrap ">
                   <Form.Label>Mobile Number</Form.Label>
                   <Form.Control
                     type="text"
@@ -112,48 +126,52 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-              </Row>
+              </div>
 
-              <Form.Group controlId="formService">
-                <Form.Label>Service</Form.Label>
-                <Form.Control as="select" onChange={handleSelect}>
-                <option value="">Select an option</option>
-                  <option value={1}>Electrician</option>
-                  <option value={2}>Plumbing</option>
-                  <option value={3}>AC Technician</option>
-                  <option value={4}>RO Services</option>
-                  <option value={5}>CCTV Services</option>
-                  <option value={6}>BroadBand Services</option>
-                </Form.Control>
-              </Form.Group>
+              <div className="col-md-12 p-2">
+                <Form.Group controlId="formService" className="input_wrap ">
+                  <Form.Label>Service</Form.Label>
+                  <Form.Control as="select" onChange={handleSelect}>
+                    <option value="">Select an option</option>
+                    <option value={1}>Electrician</option>
+                    <option value={2}>Plumbing</option>
+                    <option value={3}>AC Technician</option>
+                    <option value={4}>RO Services</option>
+                    <option value={5}>CCTV Services</option>
+                    <option value={6}>BroadBand Services</option>
+                  </Form.Control>
+                </Form.Group>
+              </div>
+              <div className="col-md-12 p-2">
+                <Form.Group controlId="formDescription" className="input_wrap ">
+                  <Form.Label>
+                    Write a sort Description of your problem
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter a description"
+                    name="description"
+                    value={form.description}
+                    onChange={(e) => handlehange(e)}
+                  />
+                </Form.Group>
+              </div>
+              <div className="col-md-12 p-2">
+                <Form.Group controlId="formAddress" className="input_wrap ">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter address"
+                    name="address"
+                    value={form.address}
+                    onChange={(e) => handlehange(e)}
+                  />
+                </Form.Group>
+              </div>
 
-              <Form.Group controlId="formDescription">
-                <Form.Label>
-                  Write a sort Description of your problem
-                </Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  placeholder="Enter a description"
-                  name="description"
-                  value={form.description}
-                   onChange={(e) => handlehange(e)}
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formAddress">
-                <Form.Label>Address</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter address"
-                  name="address"
-                  value={form.address}
-                  onChange={(e) => handlehange(e)}
-                />
-              </Form.Group>
-
-              <Row>
-                <Form.Group as={Col} controlId="formState">
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formState" className="input_wrap ">
                   <Form.Label>State</Form.Label>
                   <Form.Control
                     type="text"
@@ -163,8 +181,9 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formCity">
+              </div>
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formCity" className="input_wrap">
                   <Form.Label>City</Form.Label>
                   <Form.Control
                     type="text"
@@ -174,10 +193,9 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-              </Row>
-
-              <Row>
-                <Form.Group as={Col} controlId="formName">
+              </div>
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formName" className="input_wrap">
                   <Form.Label>Near By</Form.Label>
                   <Form.Control
                     type="text"
@@ -187,8 +205,9 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formMobile">
+              </div>
+              <div className="col-md-6 p-2">
+                <Form.Group controlId="formMobile" className="input_wrap">
                   <Form.Label>Pin Code</Form.Label>
                   <Form.Control
                     type="text"
@@ -198,29 +217,20 @@ function ContactUs() {
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>
-              </Row>
-
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Col>
-          {/* <Col md={4}>
-            <div className="contact-info">
-              <h3>Contact Us</h3>
-              <p>
-                123 Main St
-                <br />
-                Anytown, USA
-                <br />
-                Phone: (123) 456-7890
-                <br />
-                Email: info@yourcompany.com
-              </p>
+              </div>
+              <div className="contact_btn">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  style={{ width: "26%", height: "60px" }}
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
-          </Col> */}
-        </Row>
-      </Container>
+          </Form>
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,24 +1,23 @@
-import React,{useState,useEffect} from 'react';
- import axios from 'axios';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import Spinner from 'react-bootstrap/Spinner';
-import { Link } from 'react-router-dom';
-import './Service.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
+import { Link } from "react-router-dom";
+import "./Service.css";
 
 function Service() {
+  const [state, setState] = useState({
+    image: "",
+    heading: "",
+    paragraph: "",
+  });
 
-  const [state,setState] = useState({
-    image:"",
-    heading:"",
-    paragraph:"",
-  })
-
-  const [service,setService] = useState([])
+  const [service, setService] = useState([]);
 
   const options = {
     headers: {
-        'Content-Type': 'application/json',
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   // let data=JSON.stringify({
@@ -28,49 +27,69 @@ function Service() {
   //   mobile:state.mobile
   // })
 
- const fetchServiceData=()=>{
+  const fetchServiceData = () => {
+    axios
+      .get("https://onehomesolution.000webhostapp.com/fetch-service", {
+        options,
+      })
+      .then((res) => {
+        setService(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err.msg);
+      });
+  };
 
-  axios.get("https://onehomesolution.000webhostapp.com/fetch-service",{options})
-  .then((res)=>{
-      setService(res.data.data)
-  })
-  .catch((err)=>{
-    console.log(err.msg)
-  })
- }
-
-  useEffect(()=>{
-    fetchServiceData()
-  },[])
+  useEffect(() => {
+    fetchServiceData();
+  }, []);
 
   return (
-    <section className="main-section">
-      {/* <Container> */}
-        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Our Services</h3>
-        <Row style={{justifyContent:"center"}}>
-          {service.length > 0?
-          service.map((elem,index)=>{
-            return (
-             
-              <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
-            <Card>
-              <Card.Img variant="top" src={elem.image} />
-              <Card.Body>
-                <Card.Title>{elem.heading}</Card.Title>
-                <Card.Text>
-                  {elem.paragraph}
-                </Card.Text>
-                <Link to="/electrician"><Button variant="primary">Book Electrician</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-         
-            )
-          })
-          :<Spinner className='loader' animation="border" variant="primary" size='xxl'/>}
- </Row>
+    <section className="main-section py-4">
+      <div className="container">
+        <div className="row ">
+          <div className="col-md-12">
+            <div className="service_headinng text-center">
+              <h3 style={{ color: "#71a1e9" }} className="py-4">
+                Our Services
+              </h3>
+            </div>
+            <Row style={{ justifyContent: "center" }}>
+              {service.length > 0 ? (
+                service.map((elem, index) => {
+                  return (
+                    <div className="col-md-4 col-sm-12">
+                      <Card className="card">
+                        <Card.Img variant="top" src={elem.image} />
+                        <Card.Body>
+                          <Card.Title>{elem.heading}</Card.Title>
+                          <Card.Text>{elem.paragraph}</Card.Text>
+                          <Link to="/electrician">
+                            <div className="service_btn text-center pb-3">
+                              <Button variant="primary ">
+                                Book Electrician
+                              </Button>
+                            </div>
+                          </Link>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                  );
+                })
+              ) : (
+                <Spinner
+                  className="loader"
+                  animation="border"
+                  variant="primary"
+                  size="xxl"
+                />
+              )}
+            </Row>
+          </div>
+        </div>
+      </div>
 
-          {/* <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+      {/* <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2021/04/21/02/43/plumber-6195292__340.png" />
               <Card.Body>
@@ -130,7 +149,7 @@ function Service() {
               </Card.Body>
             </Card>
           </Col> */}
-       
+
       {/* </Container> */}
     </section>
   );

@@ -7,6 +7,7 @@ export const createAccount = (data, navigate) => (dispatch, getState) => {
   commonAxios("ragister", data, dispatch)
     .then((res) => {
       const data = res.data;
+      console.log(res.data,"hello")
       if (res.status) {
         navigate("/home");
         // localStorage.setItem("user", JSON.stringify(res.data));

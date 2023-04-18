@@ -35,13 +35,17 @@ const Electrician=()=> {
   }
 
   return (
+    <>
+      <Navbar/>
     <section className="main-section">
       
       <Container >
-      <Navbar/>
-        <h3 style={{display:"flex", justifyContent:"center" ,marginBottom:"15px"}}>Book Your Skilled Electrician </h3>
+      
+      <div className='service_headinng text-center'>
+      <h3 style={{ color:"#71a1e9"}}>Book Your Skilled Electrician </h3>
+      </div>
         <Row >
-          <Col md={4} className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          <Col md={4} className=" p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2019/08/22/13/37/electrician-4423534__340.jpg" />
               <Card.Body>
@@ -53,7 +57,7 @@ const Electrician=()=> {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          <Col md={4}  className=" p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2021/04/21/02/43/plumber-6195292__340.png" />
               <Card.Body>
@@ -65,7 +69,7 @@ const Electrician=()=> {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          <Col md={4}  className=" p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://media.istockphoto.com/id/1292780000/vector/air-conditioner-installation-by-service-technicians-at-home.jpg?s=612x612&w=0&k=20&c=urBjtAMHm6eifiOw8r_U1_HU-qOSKUoMm6zZ1hL1LSQ=" />
               <Card.Body>
@@ -77,7 +81,7 @@ const Electrician=()=> {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          <Col md={4}  className=" p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://media.istockphoto.com/id/1284077647/photo/reverse-osmosis-water-purification-system-at-home-installed-water-purification-filters-clear.jpg?b=1&s=170667a&w=0&k=20&c=ZugpGqIHT4Lp3hOSbtpVE60fsHShmkl15PZM4Byoz8Y=" />
               <Card.Body>
@@ -89,7 +93,7 @@ const Electrician=()=> {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4} className="shadow-lg p-3 mb-5 bg-white rounded cardBody" >
+          <Col md={4} className=" p-3 mb-5 bg-white rounded cardBody" >
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2017/06/18/23/10/cctv-2417559__340.jpg" />
               <Card.Body>
@@ -101,7 +105,7 @@ const Electrician=()=> {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
+          <Col md={4}  className=" p-3 mb-5 bg-white rounded cardBody">
             <Card>
               <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2012/04/11/17/19/router-29021__340.png" />
               <Card.Body>
@@ -135,6 +139,7 @@ const Electrician=()=> {
         </Modal.Footer>
       </Modal>
     </section>
+    </>
   );
 }
 

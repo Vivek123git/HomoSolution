@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../../../src/App.css";
 import logo from "../../img/HOMOSOLUTION.png";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 function NavbarHead() {
   const navigate = useNavigate();
 
@@ -43,13 +45,25 @@ function NavbarHead() {
           expand="lg"
           className="navigation"
         >
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar aria-controls="basic-navbar-nav" />
           <img
             src={logo}
             alt=""
             style={{ width: "80px", height: "80px", marginLeft: "9px" }}
           />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+           <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-lg`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+              placement="end"
+            >
+          <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+                  HomoSolution
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+          {/* <Navbar.Offcanvas id="basic-navbar-nav"> */}
             <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
               <Nav.Link as={Link} to="/home">
                 Home
@@ -88,7 +102,9 @@ function NavbarHead() {
                 User Profile
               </Nav.Link>
             </Nav>
-          </Navbar.Collapse>
+         
+          </Offcanvas.Body>
+          </Navbar.Offcanvas>
         </Navbar>
       </div>
 

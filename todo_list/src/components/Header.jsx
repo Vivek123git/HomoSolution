@@ -8,6 +8,7 @@ import Footer from "./Footer/Footer";
 import Customer from "./Customer/Customer";
 import { Carousel } from "react-bootstrap";
 import "../components/Header.css";
+import ChatBotrobo from "./Chatbot";
 // import HOMOSOLUTION from '../img/HOMOSOLUTION.png'
 
 function Header() {
@@ -76,6 +77,7 @@ function Header() {
             </div>
           </div>
         </div>
+        <ChatBotrobo/>
       </section>
     </>
   );

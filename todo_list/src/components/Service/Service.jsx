@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import "./Service.css";
+import Skelton from "./Skelton";
 
 function Service() {
   const [state, setState] = useState({
@@ -63,7 +64,7 @@ function Service() {
                         <Card.Img variant="top" src={elem.image} />
                         <Card.Body>
                           <Card.Title>{elem.heading}</Card.Title>
-                          <Card.Text>{elem.paragraph}</Card.Text>
+                          {/* <Card.Text>{elem.paragraph}</Card.Text> */}
                           <Link to="/electrician">
                             <div className="service_btn text-center pb-3">
                               <Button variant="primary ">
@@ -77,12 +78,10 @@ function Service() {
                   );
                 })
               ) : (
-                <Spinner
-                  className="loader"
-                  animation="border"
-                  variant="primary"
-                  size="xxl"
-                />
+                <div className="p-3 m-2" style={{justifyContent:"space-evenly"}}>
+                  <Skelton />
+                  
+                </div>
               )}
             </Row>
           </div>

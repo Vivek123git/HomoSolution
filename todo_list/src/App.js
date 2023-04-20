@@ -17,6 +17,8 @@ import ServiceWorker from "./components/Serviceworker/Serviceworker";
 import PrivateComponent from "./components/PrivateComponent";
 import ServiceWorkerProfile from "./components/Serviceworker/ServiceworkerProfile";
 import UserProfile from "./components/UserProfile";
+import ServiceCard from "./components/Service/ServiceCard"
+import ContactUs2 from "./components/ContactUs2";
 
 function App() {
   return (
@@ -39,11 +41,14 @@ function App() {
             <Route exact path="/serviceworker" element={<ServiceWorker />} />
             <Route exact path="/serviceworkerprofile" element={<ServiceWorkerProfile />} />
             <Route exact path="/userprofile" element={<UserProfile />} />
+            <Route exact path="/servicecard" element={<ServiceCard />} />
+            <Route exact path="/contactus" element={<ContactUs2 />} />
          
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
 
 export default App;

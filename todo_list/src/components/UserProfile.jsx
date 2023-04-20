@@ -64,6 +64,7 @@ const UserProfile = () => {
               <Row>
                 <Col>
                   <h2>Booking Status</h2>
+                  <div className="userTable" style={{overflow:"auto"}}>
                   <Table striped bordered hover>
                     <thead>
                       <tr>
@@ -108,7 +109,8 @@ const UserProfile = () => {
                       </tr>
                     </tbody>
                   </Table>
-                </Col>
+                  </div>
+           </Col>
               </Row>
               <>
                 <Modal show={show} onHide={handleClose}>

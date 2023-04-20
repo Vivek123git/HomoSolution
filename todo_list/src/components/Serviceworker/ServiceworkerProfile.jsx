@@ -41,6 +41,7 @@ const ServiceWorkerProfile = () => {
               <Row>
                 <Col>
                   <h2>Booking Status</h2>
+                  <div style={{overflow:"auto"}}>
                   <Table striped bordered hover>
                     <thead>
                       <tr>
@@ -83,6 +84,7 @@ const ServiceWorkerProfile = () => {
                       </tr>
                     </tbody>
                   </Table>
+                  </div>
                 </Col>
               </Row>
               </div>

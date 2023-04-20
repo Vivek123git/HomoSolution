@@ -7,7 +7,6 @@ import Contact from "./Contact/Contact";
 import Footer from "./Footer/Footer";
 import Customer from "./Customer/Customer";
 import { Carousel } from "react-bootstrap";
-import "../components/Header.css";
 import ChatBotrobo from "./Chatbot";
 // import HOMOSOLUTION from '../img/HOMOSOLUTION.png'
 

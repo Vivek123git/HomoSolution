@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown, Form } from "react-bootstrap";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,13 +6,19 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../../../src/App.css";
 import logo from "../../img/HOMOSOLUTION.png";
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { NavLink } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { onFetchServices } from "../../Action/ServiceAction";
+import { useDispatch } from "react-redux";
 
 function NavbarHead() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
+  const [profile, setProfile] = useState();
   const [form, setForm] = useState({
     mobile: "",
     password: "",
@@ -23,6 +29,8 @@ function NavbarHead() {
     setShow1(true);
     handleClose(false);
   };
+
+  const [service, setService] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleClose1 = () => setShow1(false);
@@ -37,6 +45,16 @@ function NavbarHead() {
     navigate("/serviceworkerProfile");
   };
 
+  const fetchServiceData = () => {
+    let data = {};
+    dispatch(onFetchServices(setService, data));
+  };
+  console.log(service, "ser");
+
+  useEffect(() => {
+    fetchServiceData();
+  }, []);
+
   return (
     <>
       <div className="nav_head">
@@ -49,61 +67,117 @@ function NavbarHead() {
           <img
             src={logo}
             alt=""
-            style={{ width: "80px", height: "80px", marginLeft: "9px" }}
+            style={{
+              width: "80px",
+              height: "80px",
+              padding: "9px",
+              position: "absolute",
+              left: "0px",
+            }}
           />
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
-           <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-lg`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
-              placement="end"
-            >
-          <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
-                  HomoSolution
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-          {/* <Navbar.Offcanvas id="basic-navbar-nav"> */}
-            <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
-              <Nav.Link as={Link} to="/home">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/home">
-                About Us
-              </Nav.Link>
-              <Nav.Link onClick={handleShow}>ServiceWorker Account</Nav.Link>
-              <NavDropdown title="Our Services" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/electrician">
-                  Electrician
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/plumber">
-                  Plumber
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/actech">
-                  AC technician
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/roservice">
-                  {" "}
-                  RO Services
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/cctv">
-                  {" "}
-                  CCTV Services
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/broadband">
-                  {" "}
-                  BroadBand Services
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link as={Link} to="/home">
-                Contact Us
-              </Nav.Link>
-              <Nav.Link as={Link} to="/userprofile">
-                User Profile
-              </Nav.Link>
-            </Nav>
-         
-          </Offcanvas.Body>
+          <Navbar.Offcanvas
+            id={`offcanvasNavbar-expand-lg`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+            placement="end"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+                HomoSolution
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              {/* <Navbar.Offcanvas id="basic-navbar-nav"> */}
+              <Nav className="justify-content-end me-auto my-2  flex-grow-1 pe-3">
+                <NavLink
+                  className="nav-link"
+                  as={Link}
+                  to="/home"
+                  activeClassName="active"
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  as={Link}
+                  to="/home"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  About Us
+                </NavLink>
+                <Nav.Link
+                  onClick={handleShow}
+                  className="nav-link"
+                  activeClassName="none"
+                >
+                  ServiceWorker Account
+                </Nav.Link>
+
+                <NavDropdown title="Our Services" id="basic-nav-dropdown">
+                  {/* <NavDropdown.Item as={Link} to="/electrician">
+                    Electrician
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/plumber">
+                    Plumber
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/actech">
+                    AC technician
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/roservice">
+                    {" "}
+                    RO Services
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/cctv">
+                    {" "}
+                    CCTV Services
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/broadband">
+                    {" "}
+                    BroadBand Services
+                  </NavDropdown.Item> */}
+                  {service.length > 0
+                    ? service.map((elem, id) => {
+                       return (
+                          <NavDropdown.Item
+                            as={Link}
+                            to={`/servicecard?name=${elem.type}&&id=${id}`}
+                          >
+                            {elem.type}
+                          </NavDropdown.Item>
+                        );
+                      })
+                    : ""}
+                </NavDropdown>
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to="/contactus"
+                >
+                  Contact Us
+                </NavLink>
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  style={{ marginRight: "0px" }}
+                >
+                  {/* {profile.name?profile.name:"Userprofile"} */}
+                  
+                  <NavDropdown title="Userprofile" id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/userProfile">
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/">
+                    Sign in
+                  </NavDropdown.Item>
+                </NavDropdown>
+                </NavLink>
+                {/* {profile.img?profile.img:<AccountCircleIcon sx={{fontSize:"40px"}} style={{marginRight:"5px"}}/>} */}
+                <AccountCircleIcon
+                  sx={{ fontSize: "40px" }}
+                  style={{ marginRight: "5px" }}
+                />
+              </Nav>
+            </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Navbar>
       </div>

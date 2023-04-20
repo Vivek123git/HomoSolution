@@ -1,5 +1,6 @@
 import React from "react";
 import ChatBot from "react-simple-chatbot";
+import ChatIcon from '@mui/icons-material/Chat';
 
 
 const ChatBotrobo = () => {
@@ -160,7 +161,7 @@ const ChatBotrobo = () => {
       botAvatar="https://i.imgur.com/7S7dYmS.png"
       userAvatar="https://i.imgur.com/2d12hjO.png"
       floating={true}
-      floatingIcon={<i className="fa fa-robot" />}
+      floatingIcon={<ChatIcon style={{color:"#fff"}}  fontSize="large"/>}
       recognitionEnable={true}
       recognitionLang={"en"}
       recognitionPlaceholder={"Type here..."}

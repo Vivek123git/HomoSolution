@@ -5,8 +5,40 @@ import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
 import "./Service.css";
 import Skelton from "./Skelton";
+import { onSetAlert } from "../../Action/AlertAction";
+import { useDispatch } from "react-redux";
+import {     Form } from "react-bootstrap";
+import { useNavigate } from "react-router";
+import { Modal } from "react-bootstrap";
+import { onFetchServices } from "../../Action/ServiceAction";
 
 function Service() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [show, setShow] = useState({
+    modal:false,
+    type:""
+  });
+  const [id, setId] = useState("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = (type) => setShow({...show ,modal:true, type:type});
+
+  const handleModal = (e) => {
+    const { value } = e.target;
+    if (value === "1") {
+      setId("1");
+    } else {
+      setId("2");
+    }
+  };
+
+  const handleGo = (type) => {
+   navigate(`/servicecard?name=${type}&&id=${id}`  )
+  };
+
   const [state, setState] = useState({
     image: "",
     heading: "",
@@ -29,20 +61,23 @@ function Service() {
   // })
 
   const fetchServiceData = () => {
-    axios
-      .get("https://onehomesolution.000webhostapp.com/fetch-service", {
-        options,
-      })
-      .then((res) => {
-        setService(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err.msg);
-      });
+    // axios
+    //   .get("https://onehomesolution.000webhostapp.com/fetch-service", {
+    //     options,
+    //   })
+    //   .then((res) => {
+    //     setService(res.data.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.msg);
+    //   });
+    let data={}
+    dispatch(onFetchServices(setService,data,{options}))
   };
 
   useEffect(() => {
     fetchServiceData();
+    dispatch(onSetAlert("success"))
   }, []);
 
   return (
@@ -65,13 +100,13 @@ function Service() {
                         <Card.Body>
                           <Card.Title>{elem.heading}</Card.Title>
                           {/* <Card.Text>{elem.paragraph}</Card.Text> */}
-                          <Link to="/electrician">
+                          {/* <Link to={`/servicecard?name=${elem.heading}`}> */}
                             <div className="service_btn text-center pb-3">
-                              <Button variant="primary ">
-                                Book Electrician
+                              <Button variant="primary" onClick={()=>handleShow(elem.type)}>
+                                Show more
                               </Button>
                             </div>
-                          </Link>
+                          {/* </Link> */}
                         </Card.Body>
                       </Card>
                     </div>
@@ -100,56 +135,31 @@ function Service() {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
-            <Card>
-              <Card.Img variant="top" src="https://media.istockphoto.com/id/1292780000/vector/air-conditioner-installation-by-service-technicians-at-home.jpg?s=612x612&w=0&k=20&c=urBjtAMHm6eifiOw8r_U1_HU-qOSKUoMm6zZ1hL1LSQ=" />
-              <Card.Body>
-                <Card.Title>A.C. Technician</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis .
-                </Card.Text>
-                <Link to="/actech"><Button variant="primary">Book AC Technician</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
-            <Card>
-              <Card.Img variant="top" src="https://media.istockphoto.com/id/1284077647/photo/reverse-osmosis-water-purification-system-at-home-installed-water-purification-filters-clear.jpg?b=1&s=170667a&w=0&k=20&c=ZugpGqIHT4Lp3hOSbtpVE60fsHShmkl15PZM4Byoz8Y=" />
-              <Card.Body>
-                <Card.Title>R.O. Repairing</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis .
-                </Card.Text>
-                <Link to="/roservice"><Button variant="primary">Book RO Service</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
-            <Card>
-              <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2017/06/18/23/10/cctv-2417559__340.jpg" />
-              <Card.Body>
-                <Card.Title>CCTV Services</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis .
-                </Card.Text>
-                <Link to="/cctv"><Button variant="primary">Book CCtv</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}  className="shadow-lg p-3 mb-5 bg-white rounded cardBody">
-            <Card>
-              <Card.Img variant="top" src="https://cdn.pixabay.com/photo/2012/04/11/17/19/router-29021__340.png" />
-              <Card.Body>
-                <Card.Title>Broadband services</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor ipsum vitae turpis .
-                </Card.Text>
-                <Link to="/broadband"><Button variant="primary">Book BroadBand</Button></Link>
-              </Card.Body>
-            </Card>
-          </Col> */}
+          
+          
+          
 
       {/* </Container> */}
+      <Modal show={show.modal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Select an option</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handleModal(e)}
+            >
+              <option>Open this select menu</option>
+              <option value="1">Booking by Yourself</option>
+              <option value="2">Booking By Our Platform</option>
+            </Form.Select>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={()=>handleGo(show.type)}>
+              Go
+            </Button>
+          </Modal.Footer>
+        </Modal>
     </section>
   );
 }

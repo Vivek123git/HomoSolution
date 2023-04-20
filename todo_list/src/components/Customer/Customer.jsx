@@ -19,50 +19,6 @@ function Services() {
                  See how customer love us We give Awesome Service
               </h3>
             </div>
-            {/* <Row>
-        <Col xs={12} lg={6} className="service-col">
-          <div className="service-img-wrapper">
-            <img src="https://via.placeholder.com/500x300.png" alt="Service 1" className="service-img" />
-          </div>
-          <div className="service-details">
-            <h4>Customer 1</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at massa sapien.</p>
-            <Button variant="primary">Rating</Button>
-          </div>
-        </Col>
-        <Col xs={12} lg={6} className="service-col">
-          <div className="service-img-wrapper">
-            <img src="https://via.placeholder.com/500x300.png" alt="Service 2" className="service-img" />
-          </div>
-          <div className="service-details">
-            <h4>Customer 2</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at massa sapien.</p>
-            <Button variant="primary">Rating</Button>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12} lg={6} className="service-col">
-          <div className="service-img-wrapper">
-            <img src="https://via.placeholder.com/500x300.png" alt="Service 3" className="service-img" />
-          </div>
-          <div className="service-details">
-            <h3>Customer 3</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at massa sapien.</p>
-            <Button variant="primary">Rating</Button>
-          </div>
-        </Col>
-        <Col xs={12} lg={6} className="service-col">
-          <div className="service-img-wrapper">
-            <img src="https://via.placeholder.com/500x300.png" alt="Service 4" className="service-img" />
-          </div>
-          <div className="service-details">
-            <h3>Customer 4</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at massa sapien.</p>
-            <Button variant="primary">Rating</Button>
-          </div>
-        </Col>
-      </Row> */}
             <swiper-container
               className="mySwiper"
               pagination="true"

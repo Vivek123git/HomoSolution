@@ -82,39 +82,14 @@ const Login = () => {
             > */}
 
             <div className="row justify-content-center">
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <div className="create_page ">
                   <h1 style={{ fontSize: "28px" }}>Create Account</h1>
                   <hr style={{ color: "#0062cc" }} />
                   <Form onSubmit={handleSubmit}>
                     <div className="row">
-                      {/* <div className="col-md-6 p-2">
-                        <Form.Group controlId="formMobile" className="input_wrap">
-                          <Form.Label>Your Name</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Enter your name"
-                            required
-                          />
-                        </Form.Group>
-                      </div> */}
-                      {/* <div className="col-md-6 p-2">
-                        <Form.Group controlId="formEmail" className="input_wrap">
-                          <Form.Label>Email</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Enter email "
-                            required
-                          />
-                        </Form.Group>
-                      </div> */}
-                      <div className="col-md-6 p-2">
+                      
+                      <div className="col-md-12 p-2">
                         <Form.Group
                           controlId="formMobile"
                           className="input_wrap"
@@ -130,7 +105,7 @@ const Login = () => {
                           />
                         </Form.Group>
                       </div>
-                      <div className="col-md-6 p-2">
+                      <div className="col-md-12 p-2">
                         <Form.Group
                           controlId="formPassword"
                           className="input_wrap"
@@ -146,24 +121,12 @@ const Login = () => {
                           />
                         </Form.Group>
                       </div>
-                      {/* <div className="col-md-12 p-2 ">
-                        <Form.Group controlId="formPassword" className="input_wrap">
-                          <Form.Label>Confirm Password</Form.Label>
-                          <Form.Control
-                            type="password"
-                            name="cnfPassword"
-                            value={formData.cnfPassword}
-                            onChange={handleChange}
-                            placeholder="Re-enter password"
-                            required
-                          />
-                          {msg ? <h3>Password Not matched</h3> : ""}
-                        </Form.Group>
-                      </div> */}
+                      
                       <div className="col-md-12">
                         <div className="login_btn">
                           <div className="d-flex justify-content-center align-items-baseline">
                             <p className="mb-0"> If you dont have account</p>
+                            <Link to="/create">
                             <Button
                               variant="primary"
                               type="submit"
@@ -171,6 +134,7 @@ const Login = () => {
                             >
                               Create
                             </Button>
+                            </Link>
                           </div>
                           <Button
                             variant="primary"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import "./Contact.css";
+
 import { Navigate, useNavigate } from "react-router";
 import { onBookingServiceman } from "../../Action/ServiceAction";
 import { useDispatch } from "react-redux";

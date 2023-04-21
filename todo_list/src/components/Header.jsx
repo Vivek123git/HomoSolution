@@ -8,6 +8,7 @@ import Footer from "./Footer/Footer";
 import Customer from "./Customer/Customer";
 import { Carousel } from "react-bootstrap";
 import ChatBotrobo from "./Chatbot";
+import BenefitsPage from "./Contact/Benifit";
 // import HOMOSOLUTION from '../img/HOMOSOLUTION.png'
 
 function Header() {
@@ -63,8 +64,10 @@ function Header() {
           <div className="row">
             <div className="col-md-12">
               <Service />
+              <BenefitsPage/>
               <About />
               <Customer />
+             
               <Contact />
             </div>
           </div>

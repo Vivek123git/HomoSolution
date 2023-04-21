@@ -97,11 +97,11 @@ function Service() {
                     <div className="col-md-4 col-sm-12">
                       <Card className="card">
                         <Card.Img variant="top" src={elem.image} />
-                        <Card.Body>
+                        <Card.Body style={{backgroundColor:"#71a1e9",paddingTop:"20px",paddingBottom:"0px"}}>
                           <Card.Title>{elem.heading}</Card.Title>
                           {/* <Card.Text>{elem.paragraph}</Card.Text> */}
                           {/* <Link to={`/servicecard?name=${elem.heading}`}> */}
-                            <div className="service_btn text-center pb-3">
+                            <div className="service_btn text-center pb-3" >
                               <Button variant="primary" onClick={()=>handleShow(elem.type)}>
                                 Show more
                               </Button>

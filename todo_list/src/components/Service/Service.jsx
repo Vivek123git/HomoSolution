@@ -19,24 +19,26 @@ function Service() {
 
   const [show, setShow] = useState({
     modal:false,
+    id:"",
     type:""
   });
-  const [id, setId] = useState("");
+  const [modalId, setModalId] = useState("");
 
   const handleClose = () => setShow(false);
-  const handleShow = (type) => setShow({...show ,modal:true, type:type});
+  const handleShow = (id,type) => setShow({...show ,modal:true,id:id, type:type});
 
   const handleModal = (e) => {
     const { value } = e.target;
     if (value === "1") {
-      setId("1");
+      setModalId("1");
     } else {
-      setId("2");
+      setModalId("2");
     }
   };
+  // console.log(show.id,"id")
 
-  const handleGo = (type) => {
-   navigate(`/servicecard?name=${type}&&id=${id}`  )
+  const handleGo = (id,type) => {
+   navigate(`/servicecard?sId=${show.id}&name=${show.type}&id=${modalId}`  )
   };
 
   const [state, setState] = useState({
@@ -72,12 +74,11 @@ function Service() {
     //     console.log(err.msg);
     //   });
     let data={}
-    dispatch(onFetchServices(setService,data,{options}))
+    dispatch(onFetchServices(setService,data))
   };
 
   useEffect(() => {
     fetchServiceData();
-    dispatch(onSetAlert("success"))
   }, []);
 
   return (
@@ -102,7 +103,7 @@ function Service() {
                           {/* <Card.Text>{elem.paragraph}</Card.Text> */}
                           {/* <Link to={`/servicecard?name=${elem.heading}`}> */}
                             <div className="service_btn text-center pb-3" >
-                              <Button variant="primary" onClick={()=>handleShow(elem.type)}>
+                              <Button variant="primary" onClick={()=>handleShow(elem.id,elem.type)}>
                                 Show more
                               </Button>
                             </div>
@@ -155,7 +156,7 @@ function Service() {
             </Form.Select>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={()=>handleGo(show.type)}>
+            <Button variant="primary" onClick={()=>handleGo(show.id,show.type)}>
               Go
             </Button>
           </Modal.Footer>

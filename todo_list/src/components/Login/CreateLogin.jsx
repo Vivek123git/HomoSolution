@@ -30,11 +30,6 @@ const CreateLogin = () => {
     });
   };
 
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
 
   let data = JSON.stringify({
     email: formData.email,
@@ -49,18 +44,6 @@ const CreateLogin = () => {
       setMsg(true);
     } else {
       dispatch(createAccount(data, navigate));
-      // axios.post("https://onehomesolution.000webhostapp.com/ragister",data,{options})
-      // .then((res)=>{
-      //     // console.log(res)
-
-      //       console.log("first")
-      //       navigate("/home")
-      //       localStorage.setItem("user",JSON.stringify(res.data))
-
-      // })
-      // .catch((error)=>{
-      //     console.log(error)
-      // })
     }
   };
 

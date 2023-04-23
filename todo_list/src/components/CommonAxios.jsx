@@ -22,7 +22,7 @@ export async function commonAxios (endPoint ,data, dispatch,token,option) {
             }
         }else{
             if(res.data.message.includes("Unauthorized Token")){
-                dispatch({type:"OGIN_FAILURE"})
+                dispatch({type:"LOGIN_FAILURE"})
             }else{
                 return{
                     status:false,

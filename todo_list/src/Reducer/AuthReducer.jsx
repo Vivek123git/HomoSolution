@@ -14,11 +14,6 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN_REQUEST":
-      return produce(state, (draftState) => {
-        draftState.isAuthenticated = false;
-        draftState.error = null;
-      });
     case "LOGIN_SUCCESS":
       return produce(state, (draftState) => {
         draftState.isAuthenticated = true;

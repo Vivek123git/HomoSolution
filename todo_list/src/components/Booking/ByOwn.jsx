@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import Navbar from "../Navbar/Navbar";
-import "./Booking.css";
+import { useLocation } from "react-router";
+import { useDispatch } from "react-redux";
+import { onFetchWorkerData } from "../../Action/ServiceAction";
+
 
 const ByOwn = () => {
+  
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get("name");
+  const id = searchParams.get("id");
+
+  const[workerData, setWorkerData] = useState([])
+  // const[workerId,setWorkerId] = useState(id)
+
+  const fetchWorkerData=()=>{
+    let data={id:id}
+    dispatch(onFetchWorkerData(setWorkerData,data))
+  }
+
+  useEffect(()=>{
+    fetchWorkerData()
+  },[])
+
   return (
     <>
       <Navbar />
       <section className="main-section">
         <Container>
         <div className="service_headinng text-center">
-            <h3 style={{ color: "#71a1e9" }}>Call your Home Wiring Serviceworker easily ! </h3>
+            <h3 style={{ color: "#71a1e9" }}>Call your {name} Serviceworker easily ! </h3>
           </div>
          
           <Row>

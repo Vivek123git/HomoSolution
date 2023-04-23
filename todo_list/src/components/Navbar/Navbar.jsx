@@ -113,34 +113,13 @@ function NavbarHead() {
                   ServiceWorker Account
                 </Nav.Link>
 
-                <NavDropdown title="Our Services" id="basic-nav-dropdown">
-                  {/* <NavDropdown.Item as={Link} to="/electrician">
-                    Electrician
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/plumber">
-                    Plumber
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/actech">
-                    AC technician
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/roservice">
-                    {" "}
-                    RO Services
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/cctv">
-                    {" "}
-                    CCTV Services
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/broadband">
-                    {" "}
-                    BroadBand Services
-                  </NavDropdown.Item> */}
+                <NavDropdown title="Our Services" id="basic-nav-dropdown" style={{paddingRight:"0px"}}>
                   {service.length > 0
                     ? service.map((elem, id) => {
                        return (
                           <NavDropdown.Item
                             as={Link}
-                            to={`/servicecard?name=${elem.type}&&id=${id}`}
+                            to={`/servicecard?sId=${elem.id}&name=${elem.type}&id=${"1"}`}
                           >
                             {elem.type}
                           </NavDropdown.Item>

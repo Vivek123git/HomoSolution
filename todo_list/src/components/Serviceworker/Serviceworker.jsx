@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./Serviceworker.css";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
-import { onCreateServiceman } from "../../Action/ServiceAction";
+import { fetchSubServicesData, onCreateServiceman } from "../../Action/ServiceAction";
 import { useNavigate } from "react-router";
+import Multiselect from "multiselect-react-dropdown";
 
 function ServiceWorker() {
   const navigate = useNavigate();
@@ -15,92 +16,87 @@ function ServiceWorker() {
     mobile: "",
     address: "",
     service: "",
-    skills: "",
-    img: "",
-    aadhar: "",
+    skills: [],
+    img: null,
+    aadhar: null,
     password: "",
+    cnfPassword: "",
   });
+  const [servicesData, setServicesData] = useState([]);
 
+  const options = [
+    { name: "Option 1", id: 1 },
+    { name: "Option 2", id: 2 },
+    { name: "Option 4", id: 4 },
+    { name: "Option 5", id: 5 },
+    { name: "Option 8", id: 8 },
+    { name: "Option 29", id: 9 }
+  ];
+
+  const [selectedValues, setSelectedValues] = useState([]);
+
+  function onSelect(selectedList, selectedItem) {
+    setSelectedValues(selectedList);
+    console.log(`Selected List: ${selectedList}`);
+    console.log(`Selected Item: ${selectedItem}`);
+  }
+
+  function onRemove(selectedList, removedItem) {
+    setSelectedValues(selectedList);
+    console.log(`Selected List: ${selectedList}`);
+    console.log(`Removed Item: ${removedItem}`);
+  }
+
+  console.log(form.service);
   const handleSelect = (e) => {
-    const { value } = e.target;
-    if (value === "1") {
-      setForm({
-        ...form,
-        service: "Electrician",
-      });
-    } else if (value === "2") {
-      setForm({
-        ...form,
-        service: "Plumbering",
-      });
-    } else if (value === "3") {
-      setForm({
-        ...form,
-        service: "AC Services",
-      });
-    } else if (value === "4") {
-      setForm({
-        ...form,
-        service: "RO Services",
-      });
-    } else if (value === "5") {
-      setForm({
-        ...form,
-        service: "CCTV Services",
-      });
-    } else if (value === "6") {
-      setForm({
-        ...form,
-        service: "BroadBand Services",
-      });
-    }
-  };
-
-  const data = {
-    name: form.name,
-    service: form.service,
-    skills: form.skills,
-    mobile: form.mobile,
-    description: form.description,
-    address: form.address,
-    password: form.password,
-    img: form.img,
-    aadhar: form.aadhar,
-    password: form.password,
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(onCreateServiceman(data));
-  };
-
-  const handlehange = (e) => {
     const { name, value } = e.target;
-    const file = name[0];
-
-    if (name === "image") {
-      if (file && (file.type === "image/jpeg" || file.type === "image/jpg")) {
-        setForm({ ...form, img: value });
-      }
-    } else if (name === "file") {
-      if (
-        file &&
-        (file.type === "image/jpeg" ||
-          file.type === "image/jpg" ||
-          file.type === "application/pdf")
-      ) {
-        setForm({ ...form, aadhar: value });
-      }
-    }
     setForm({
       ...form,
       [name]: value,
     });
   };
 
-  const handleCreate = () => {
-    // navigate("/serviceworkerprofile");
+  const handlehange = (e) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+    const file = e.target.files[0];
+    console.log(file, "file");
+    if (name === "image") {
+      if (file) {
+        console.log("first");
+        setForm({ ...form, img: file });
+      }
+    } else if (name === "aadhar") {
+      if (file) {
+        console.log("first");
+        setForm({ ...form, aadhar: file });
+      }
+    }
   };
+
+  let formData = new FormData(); //formdata object
+
+  formData.append("name", form.name);
+  formData.append("service", form.service);
+  formData.append("skill", form.skills);
+  formData.append("mobile", form.mobile);
+  formData.append("address", form.address);
+  formData.append("password", form.password);
+  formData.append("image", form.img);
+  formData.append("file", form.aadhar);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(onCreateServiceman(formData));
+  };
+
+  useEffect(()=>{
+    let data={}
+   dispatch(fetchSubServicesData(data,setServicesData))
+  },[])
 
   return (
     <>
@@ -174,9 +170,9 @@ function ServiceWorker() {
                         <Form.Label>Choose Your Service</Form.Label>
                         <Form.Control
                           as="select"
-                          //   value={selectBox2}
+                          name="service"
+                          value={form.service}
                           onChange={handleSelect}
-                          required
                         >
                           <option value="">Select an option</option>
                           <option value={1}>Electrician</option>
@@ -191,16 +187,13 @@ function ServiceWorker() {
                     <div className="col-md-6 p-2">
                       <Form.Group as={Col} className="input_wrap">
                         <Form.Label>Choose Your Skills</Form.Label>
-                        <Form.Control
-                          as="select"
-                          //   value={selectBox2}
-                          //   onChange={handleSelectBox2Change}
-                          required
-                        >
-                          <option value="">Select an option</option>
-                          <option value="option1">Option 1</option>
-                          <option value="option2">Option 2</option>
-                        </Form.Control>
+                        <Multiselect
+                          options={options}
+                          selectedValues={selectedValues}
+                          onSelect={onSelect}
+                          onRemove={onRemove}
+                          displayValue="name"
+                        />
                       </Form.Group>
                     </div>
 
@@ -220,28 +213,27 @@ function ServiceWorker() {
                       </Form.Group>
                     </div>
                     <div className="col-md-6 p-2">
-                      <Form.Group as={Col} className="input_wrap">
-                        <Form.Label>Upload Your Image</Form.Label>
-                        <Form.Control
-                          type="file"
-                          name="image"
-                          // accept="image/*"
-                          onChange={(e) => handlehange(e)}
-                          value={form.img}
-                          accept="image/jpeg,image/jpg"
-                        />
-                      </Form.Group>
+                      <Form>
+                        <Form.Group as={Col} className="input_wrap">
+                          <Form.Label>Upload Your Image</Form.Label>
+                          <Form.Control
+                            type="file"
+                            name="image"
+                            onChange={handlehange}
+                            accept="image/jpeg,image/jpg"
+                          />
+                        </Form.Group>
+                      </Form>
                     </div>
                     <div className="col-md-6 p-2">
                       <Form.Group as={Col} className="input_wrap">
                         <Form.Label>Upload Your Aadhar Card (pdf)</Form.Label>
                         <Form.Control
                           type="file"
-                          // accept=".pdf/jpg"
+                          //  accept=".pdf/jpg"
                           accept="application/pdf,image/jpeg,image/jpg"
-                          name="file"
-                          onChange={(e) => handlehange(e)}
-                          value={form.aadhar}
+                          name="aadhar"
+                          onChange={handlehange}
                         />
                       </Form.Group>
                     </div>
@@ -251,10 +243,11 @@ function ServiceWorker() {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                           type="password"
+                          name="password"
                           placeholder="Enter password"
-                          // value={password}
-                          // onChange={handlePasswordChange}
-                          required
+                          value={form.password}
+                          onChange={(e) => handlehange(e)}
+                          // required
                         />
                       </Form.Group>
                     </div>
@@ -263,10 +256,11 @@ function ServiceWorker() {
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control
                           type="password"
+                          name="cnfPassword"
                           placeholder="Enter password"
-                          // value={password}
-                          // onChange={handlePasswordChange}
-                          required
+                          value={form.cnfPassword}
+                          onChange={(e) => handlehange(e)}
+                          // required
                         />
                       </Form.Group>
                     </div>
@@ -274,7 +268,6 @@ function ServiceWorker() {
                     <Button
                       variant="primary"
                       type="submit"
-                      onClick={handleCreate}
                       style={{
                         width: "36%",
                         height: "60px",

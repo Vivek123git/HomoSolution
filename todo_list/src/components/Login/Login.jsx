@@ -6,14 +6,19 @@ import "./Login.css";
 import "../../../src/App.css";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { loginAccount } from "../../Action/AuthAction";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  console.log(formData,"fihdc")
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,15 +34,16 @@ const Login = () => {
     },
   };
 
-  let data = {
-    email: formData.email,
-    password: formData.password,
-  };
+ 
+
+  let formDataLogin = new FormData();
+  formDataLogin.append("email",formData.email)
+  formDataLogin.append("password",formData.password)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://onehomesolution.000webhostapp.com/login-user", data, {
+      .post("https://onehomesolution.000webhostapp.com/login-user", formDataLogin, {
         options,
       })
       .then((res) => {
@@ -49,6 +55,7 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
       });
+    // dispatch(loginAccount(formDataLogin,navigate))
   };
 
   return (
@@ -96,9 +103,9 @@ const Login = () => {
                         >
                           <Form.Label>Mobile No./Email</Form.Label>
                           <Form.Control
-                            type="Number"
-                            name="mobile"
-                            value={formData.mobile}
+                            type="text"
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                             placeholder="Enter mobile no./email"
                             required
@@ -112,7 +119,7 @@ const Login = () => {
                         >
                           <Form.Label>Password</Form.Label>
                           <Form.Control
-                            type="password"
+                            type="pasword"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}

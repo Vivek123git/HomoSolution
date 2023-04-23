@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -11,13 +11,31 @@ import {
 import { Modal } from "react-bootstrap";
 import Rating from "react-rating-stars-component";
 import Navbar from "./Navbar/Navbar";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { useDispatch } from "react-redux";
+import { onfetchUserrDetails } from "../Action/ServiceAction";
 
 const UserProfile = () => {
+  const dispatch = useDispatch()
   const [rating, setRating] = useState({
     name: "",
     text: "",
     rate: "",
   });
+
+  const [user,setUser] = useState([])
+  const [image, setImage] = useState(
+    "https://img.freepik.com/free-vector/repair-elements-round-template_1284-37691.jpg?w=740&t=st=1680349046~exp=1680349646~hmac=01f506fa402adb9a53b74df1f76fa944ac021ca14fcf1875cc7ead5d08f6cb62"
+  );
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+  };
 
   const handleChange = () => {};
 
@@ -26,6 +44,15 @@ const UserProfile = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const fetchUserDetails=()=>{
+    dispatch(onfetchUserrDetails(setUser))
+  }
+
+  useEffect(()=>{
+    fetchUserDetails()
+  },[])
+
   return (
     <>
       <Navbar />
@@ -54,11 +81,27 @@ const UserProfile = () => {
                   md={4}
                   style={{ display: "flex", justifyContent: "flex-end" }}
                 >
-                  <Image
-                    style={{ maxWidth: "200px" }}
-                    src="https://img.freepik.com/free-vector/repair-elements-round-template_1284-37691.jpg?w=740&t=st=1680349046~exp=1680349646~hmac=01f506fa402adb9a53b74df1f76fa944ac021ca14fcf1875cc7ead5d08f6cb62"
-                    roundedCircle
-                  />
+                 <div>
+                    <img
+                      style={{ maxWidth: "200px" }}
+                      src={image}
+                      roundedCircle
+                      alt="avatar"
+                    />
+                    <br />
+                    <input
+                      style={{display:"none", marginLeft:"40px" }}
+                      id="upload-photo"
+                      name="upload-photo"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                    />
+                    <label htmlFor="upload-photo" className="d-flex">
+                      <p>Edit Image</p>
+                      <ModeEditIcon style={{ marginTop: "5px" }} />
+                    </label>
+                  </div>
                 </Col>
               </Row>
               <Row>

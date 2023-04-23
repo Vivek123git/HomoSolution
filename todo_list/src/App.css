@@ -637,7 +637,7 @@ swiper-slide img {
   border: 3px solid #0069d9;
   background: #66a3e2d4; */
 
-  max-height: 100%;
+  max-height: 95%;
     margin: 10px;
     max-width: 100%;
     border: 3px solid #0069d9;
@@ -876,5 +876,9 @@ swiper-slide img {
   /* border-radius: 10px; */
   /* padding: 20px; */
   text-align: center;
+}
+
+.css-julti5-MuiSwitch-root{
+  bottom: 5px !important;
 }
 

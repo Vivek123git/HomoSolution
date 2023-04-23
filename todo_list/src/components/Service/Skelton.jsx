@@ -12,18 +12,18 @@ function Skelton() {
             width: "18rem",
             border: "2px solid #71a1e9",
             margin: "10px",
-            backgroundColor: "white",
+            backgroundColor: "#71a1e9",
             borderRadius:"2px"
           }}
         >
           <Card.Body className="p-0" style={{ backgroundColor: "white" }}>
             <Placeholder as={Card} animation="glow">
-              <Placeholder style={{ width: "265px", height: "200px",backgroundColor: "white" }} />
+              <Placeholder style={{ width: "260px", height: "200px",backgroundColor: "#71a1e9" }} />
             </Placeholder>
           </Card.Body>
           <Card.Body style={{ padding: "5px", backgroundColor: "white" }}>
             <Placeholder as={Card} animation="glow" >
-              <Placeholder style={{ width: "265px", height: "50px" ,backgroundColor: "white"}} />
+              <Placeholder style={{ width: "250px", height: "50px" ,backgroundColor: "#71a1e9"}} />
             </Placeholder>
             {/* <Placeholder as={Card.Text} animation="glow">
 <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}

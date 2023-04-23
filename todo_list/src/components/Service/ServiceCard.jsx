@@ -1,53 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router";
 import "../../../src/App.css";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchSubServices } from "../../Action/ServiceAction";
+import Skelton from "./Skelton";
+import { onSetAlert } from "../../Action/AlertAction";
+import Alert1 from "../Alert";
 
 const ServiceCard = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+
   const searchParams = new URLSearchParams(location.search);
+  const sId = searchParams.get("sId");
   const name = searchParams.get("name");
   const id = searchParams.get("id");
 
-  //   const [show, setShow] = useState(false);
-  //   const [id, setId] = useState("");
+  const [services, setServices] = useState([]);
+  const [sid, setSid] = useState(sId);
 
-  //   const handleClose = () => setShow(false);
-  //   const handleShow = () => setShow(true);
 
-  //   const handleModal = (e) => {
-  //     const { value } = e.target;
-  //     console.log(value);
-  //     if (value === "1") {
-  //       setId("1");
-  //     } else {
-  //       setId("2");
-  //     }
-  //   };
 
-  //   const handleGo = () => {
-  //     if (id == "1") {
-  //       navigate("/byown");
-  //     } else if (id === "2") {
-  //       navigate("/oursite");
-  //     }
-  //   };
+  let formData = new FormData(); 
+  formData.append("id", sid); 
 
-  const handleClick = () => {
+  const onFetchSubServices = () => {
+    dispatch(fetchSubServices(formData, setServices));
+  };
+
+  const handleClick = (name,ind) => {
     if (id == "1") {
-      navigate("/byown");
+      navigate(`/byown?name=${name}&id${ind}`);
     } else if (id === "2") {
+      console.log("first")
       navigate("/oursite");
     }
   };
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const newSId = searchParams.get("sId");
+    setSid(newSId);
+
+  }, [location]);
+
+  useEffect(() => {
+    onFetchSubServices();
+    
+  }, [sid]);
+
   return (
     <>
+    
       <Navbar />
+      <Alert1/>
       <section className="main-section">
         <Container>
           <div className="service_headinng text-center">
@@ -72,7 +83,37 @@ const ServiceCard = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col md={4} className=" p-3 mb-5 bg-white rounded cardBody">
+
+            {services.length > 0 ?
+              services.map((elem, ind) => {
+                console.log(elem, "elem");
+                return (
+                  <Col
+                    key={ind}
+                    md={4}
+                    className=" p-3 mb-5 bg-white rounded cardBody"
+                  >
+                    <Card>
+                      <Card.Img variant="top" src={elem.image} />
+                      <Card.Body style={{backgroundColor:"#71a1e9",paddingTop:"20px",paddingBottom:"0px"}} >
+                        <Card.Title>{elem.heading}</Card.Title>
+                        <Card.Text>{elem.paragraph}</Card.Text>
+                        <div className=" text-center pb-3" style={{display:"flex",justifyContent:"space-between"}} >
+                        <Button variant="primary" onClick={()=>handleClick(elem.heading,elem.workerId)}>Book Now</Button>
+                        {id==="2"?<Button style={{float:"right"}}>Price {elem.price}</Button>:""}
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                );
+              }): (
+                <div className="p-3 m-2" style={{justifyContent:"space-evenly"}}>
+                  <Skelton />
+                  
+                </div>
+              )}
+
+            {/* <Col md={4} className=" p-3 mb-5 bg-white rounded cardBody">
               <Card>
                 <Card.Img
                   variant="top"
@@ -151,7 +192,7 @@ const ServiceCard = () => {
                   <Button variant="primary">Book Now</Button>
                 </Card.Body>
               </Card>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
         {/* <Modal show={show} onHide={handleClose}>

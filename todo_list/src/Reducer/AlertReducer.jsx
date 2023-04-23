@@ -1,15 +1,17 @@
+ import produce from "immer";
+
 const initialState={
-    data:""
+    msg:""
 }
 
-const AlertReducer = (state = initialState, action) => {
-    switch (action.type) {
+export const AlertReducer = (state = initialState, action) => {
+    const{type,payload} = action
+    switch (type) {
         case "ON_SET_ALERT": 
-            return {
-                ...state,
-                data:action.payload
-                
-            }
+            return produce (state,(draft)=>{
+                draft.status = payload.status
+                draft.msg = payload.message
+            })
         
         default: 
             return state ; 

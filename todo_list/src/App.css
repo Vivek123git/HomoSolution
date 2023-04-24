@@ -132,7 +132,7 @@ a:hover {
 .footer_section li {
   color: #022e6f;
   cursor: default;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 .footer_section .list-unstyled {
   display: inline-block;
@@ -548,7 +548,7 @@ swiper-slide img {
   font-size: 18px;
   justify-content: space-around;
   position: relative;
-  height: 80px;
+  height: 100px;
 }
 
 .navigation a {
@@ -616,7 +616,7 @@ swiper-slide img {
   max-height: 100%;
   color: var(--bs-offcanvas-color);
   visibility: hidden;
-  background-color:#71a1e9;
+  background-color:#fff;
   background-clip: padding-box;
   outline: 0;
   transition: transform 0.5s ease-in-out;
@@ -825,13 +825,13 @@ swiper-slide img {
 
 
 .contact-container{
-  background-color: #71a1e9;
-    width: 83%;
+  background-color: white;
+    /* width: 83%; */
     padding: 50px;
     /* margin: 50px; */
-    position: absolute;
+    /* position: absolute; */
     /* right: 125px; */
-    left: 120px;
+    /* left: 120px; */
     border-radius: 10px;
 }
 
@@ -882,3 +882,9 @@ swiper-slide img {
   bottom: 5px !important;
 }
 
+.footer-content{
+  color: rgb(2, 46, 111);
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 100 !important;
+}

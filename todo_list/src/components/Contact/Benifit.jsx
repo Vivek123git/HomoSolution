@@ -14,32 +14,32 @@ const BenefitsPage = () => {
     {
       icon: <  CurrencyRupeeIcon sx={{ fontSize: 40 }}/>,
       title: 'Pay after service',
-      description: 'This is the description for benefit 1.'
+      description: 'We offer the convenience of paying after the job is completed to ensure customer satisfaction.'
     },
     {
       icon: <  AccessAlarmIcon sx={{ fontSize: 40 }}/>,
       title: 'Before 60 min. solution',
-      description: 'This is the description for benefit 2.'
+      description: ' Our fast and efficient service guarantees a solution within 60 minutes.'
     },
     {
       icon: <HandshakeIcon sx={{ fontSize: 40 }}/>,
       title: 'Guarranty of all problem',
-      description: 'This is the description for benefit 3.'
+      description: 'We stand behind our work and offer a satisfaction guarantee for all the services we provide.'
     },
     {
       icon: <CheckIcon sx={{ fontSize: 40 }}/>,
       title: 'Verified workers',
-      description: 'This is the description for benefit 4.'
+      description: ' Our team of workers are verified and undergo background checks to ensure safety and security.'
     },
     {
       icon: <SentimentNeutralIcon sx={{ fontSize: 40 }}/>,
       title: 'Experinced worker',
-      description: 'This is the description for benefit 5.'
+      description: 'Our team of experienced professionals are equipped with the skills and knowledge to get the job done right the first time.'
     },
     {
       icon: <ThumbUpIcon sx={{ fontSize: 40 }}/>,
       title: 'Easy to book',
-      description: 'This is the description for benefit 6.'
+      description: 'With our user-friendly online booking system, scheduling your home maintenance and repair services has never been easier.'
     }
   ];
 

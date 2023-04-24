@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Footer from './Footer/Footer';
+import Navbar from './Navbar/Navbar'
 
 const ContactUs2 = () => {
 
@@ -13,6 +14,8 @@ const ContactUs2 = () => {
   }
 
   return (
+    <div>
+    <Navbar/>
     <div style={{position:"relative"}}>
         <section className="contact-section ">
       <div className="container">
@@ -81,7 +84,7 @@ const ContactUs2 = () => {
 
              
               
-              <div className="contact_btn">
+              <div style={{display:"flex",justifyContent:"flex-end"}}>
                 <Button
                   variant="primary"
                   type="submit"
@@ -96,14 +99,16 @@ const ContactUs2 = () => {
       </div>
     </section>
     
-    {/* <div className="container-fluid">
+    
+    <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
               <Footer />
             </div>
           </div>
-        </div> */}
+        </div>
 
+    </div>
     </div>
   )
 }

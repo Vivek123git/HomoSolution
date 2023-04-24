@@ -19,6 +19,7 @@ import ServiceWorkerProfile from "./components/Serviceworker/ServiceworkerProfil
 import UserProfile from "./components/UserProfile";
 import ServiceCard from "./components/Service/ServiceCard"
 import ContactUs2 from "./components/ContactUs2";
+import About from "./components/About/About";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/userprofile" element={<UserProfile />} />
             <Route exact path="/servicecard" element={<ServiceCard />} />
             <Route exact path="/contactus" element={<ContactUs2 />} />
+            <Route exact path="/aboutus" element={<About />} />
          
         </Routes>
       </BrowserRouter>

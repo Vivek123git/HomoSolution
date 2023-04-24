@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown, Form } from "react-bootstrap";
-import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -99,7 +98,7 @@ function NavbarHead() {
                 </NavLink>
                 <NavLink
                   as={Link}
-                  to="/home"
+                  to="/aboutus"
                   className="nav-link"
                   activeClassName="active"
                 >

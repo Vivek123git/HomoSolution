@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import Service from "./Service/Service";
@@ -11,14 +11,15 @@ import ChatBotrobo from "./Chatbot";
 import BenefitsPage from "./Contact/Benifit";
 import Alert1 from "./Alert";
 import { onSetAlert } from "../Action/AlertAction";
+import team from "../img/team.png.jpg";
+import DemandServices from "./Service/DemandServices";
 // import HOMOSOLUTION from '../img/HOMOSOLUTION.png'
 
 function Header() {
-
   return (
     <>
       <Navbar />
-      <Alert1/>
+      <Alert1 />
       <div className="container-fluid p-0">
         <div className="row m-0">
           <div className="col-md-12 p-0">
@@ -68,10 +69,42 @@ function Header() {
           <div className="row">
             <div className="col-md-12">
               <Service />
-              <BenefitsPage/>
-              <About />
+              <BenefitsPage />
+              {/* <About /> ............................................................................*/}
+              <section className="about-section my-4">
+                <Container>
+                  <Row style={{ padding: "40px" }}>
+                    <Col md={6}>
+                      <div className="img_wrapper">
+                        <Image src={team} alt="About Us" fluid />
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <h3 className="" style={{ color: "#71a1e9" }}>
+                        About Us
+                      </h3>
+                      <p>
+                        Welcome to our website! We are a one-stop-shop for all
+                        your home maintenance and repair needs. Whether you need
+                        an electrician, plumber, AC technician, RO service,
+                        broadband installation or CCTV installation, we've got
+                        you covered.
+                      </p>
+                      <p>
+                        Our team is made up of highly skilled and experienced
+                        professionals who are dedicated to providing you with
+                        top-quality services at competitive prices. We take
+                        pride in offering exceptional customer service and
+                        guaranteeing customer satisfaction with every job we
+                        undertake.
+                      </p>
+                    </Col>
+                  </Row>
+                </Container>
+              </section>
+              {/* ...................................................................................... */}
               <Customer />
-             
+
               <Contact />
             </div>
           </div>
@@ -83,7 +116,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <ChatBotrobo/>
+        <ChatBotrobo />
       </section>
     </>
   );

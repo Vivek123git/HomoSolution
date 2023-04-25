@@ -10,10 +10,13 @@ import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { onFetchServices } from "../../Action/ServiceAction";
 import { useDispatch } from "react-redux";
+import Avatar from "@mui/material/Avatar";
 
 function NavbarHead() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const auth = JSON.parse(localStorage.getItem("state"));
+  console.log(auth, "auth");
 
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -48,7 +51,10 @@ function NavbarHead() {
     let data = {};
     dispatch(onFetchServices(setService, data));
   };
-  console.log(service, "ser");
+
+  const handleSignOut = () => {
+    localStorage.clear();
+  };
 
   useEffect(() => {
     fetchServiceData();
@@ -96,14 +102,7 @@ function NavbarHead() {
                 >
                   Home
                 </NavLink>
-                <NavLink
-                  as={Link}
-                  to="/aboutus"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  About Us
-                </NavLink>
+
                 <Nav.Link
                   onClick={handleShow}
                   className="nav-link"
@@ -112,13 +111,19 @@ function NavbarHead() {
                   ServiceWorker Account
                 </Nav.Link>
 
-                <NavDropdown title="Our Services" id="basic-nav-dropdown" style={{paddingRight:"0px"}}>
+                <NavDropdown
+                  title="Our Services"
+                  id="basic-nav-dropdown"
+                  style={{ paddingRight: "0px" }}
+                >
                   {service.length > 0
                     ? service.map((elem, id) => {
-                       return (
+                        return (
                           <NavDropdown.Item
                             as={Link}
-                            to={`/servicecard?sId=${elem.id}&name=${elem.type}&id=${"1"}`}
+                            to={`/servicecard?sId=${elem.id}&name=${
+                              elem.type
+                            }&id=${"1"}`}
                           >
                             {elem.type}
                           </NavDropdown.Item>
@@ -126,6 +131,14 @@ function NavbarHead() {
                       })
                     : ""}
                 </NavDropdown>
+                <NavLink
+                  as={Link}
+                  to="/aboutus"
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  About Us
+                </NavLink>
                 <NavLink
                   className="nav-link"
                   activeClassName="active"
@@ -139,20 +152,33 @@ function NavbarHead() {
                   style={{ marginRight: "0px" }}
                 >
                   {/* {profile.name?profile.name:"Userprofile"} */}
-                  
+
                   <NavDropdown title="Userprofile" id="basic-nav-dropdown">
-                  <NavDropdown.Item as={Link} to="/userProfile">
-                    Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/">
-                    Sign in
-                  </NavDropdown.Item>
-                </NavDropdown>
+                    {auth && auth.login && auth.login.user ? (
+                      <>
+                        <NavDropdown.Item as={Link} to="/userProfile">
+                          Profile
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleSignOut}>
+                          Sign out
+                        </NavDropdown.Item>
+                      </>
+                    ) : (
+                      <NavDropdown.Item as={Link} to="/">
+                        Sign in
+                      </NavDropdown.Item>
+                    )}
+                  </NavDropdown>
                 </NavLink>
                 {/* {profile.img?profile.img:<AccountCircleIcon sx={{fontSize:"40px"}} style={{marginRight:"5px"}}/>} */}
-                <AccountCircleIcon
-                  sx={{ fontSize: "40px" }}
+                {/* <AccountCircleIcon
+                  sx={{ fontSize: "60px" }}
                   style={{ marginRight: "5px" }}
+                /> */}
+                <Avatar
+                  sx={{ fontSize: "60px" }}
+                  style={{ marginRight: "5px" }}
+                  src="/broken-image.jpg"
                 />
               </Nav>
             </Offcanvas.Body>

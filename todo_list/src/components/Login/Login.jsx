@@ -49,6 +49,8 @@ const Login = () => {
       .then((res) => {
         if (res.data.status) {
           console.log(res);
+          const data = res.data;
+          dispatch({ type: "LOGIN_SUCCESS", payload: data });
           navigate("/home");
         }
       })

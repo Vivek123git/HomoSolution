@@ -6,6 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Container } from 'react-bootstrap';
+import 'animate.css';
 
 
 
@@ -50,9 +51,9 @@ const BenefitsPage = () => {
         <div className="benefits-grid">
           {benefits.map((benefit, index) => (
             <div key={index} className="benefit-card">
-              <div style={{textAlign:"left"}}>{benefit.icon}</div>
+              <div className='animate__animated animate__bounce animate__infinite	infinite' style={{textAlign:"left"}}>{benefit.icon}</div>
               <h4 style={{textAlign:"left",fontSize:"large"}}>{benefit.title}</h4>
-              <p style={{ fontSize:"small",textAlign:"left"}}>{benefit.description}</p>
+              <p style={{ fontSize:"16px",fontWeight:"100",fontFamily:"roboto",textAlign:"left"}}>{benefit.description}</p>
             </div>
           ))}
         </div>

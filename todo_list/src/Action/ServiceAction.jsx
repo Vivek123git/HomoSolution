@@ -24,7 +24,7 @@ export const onBookingServiceman=(data)=>(dispatch,getState)=>{
     })
 }
 
-export const onCreateServiceman=(data)=>(dispatch,getState)=>{
+export const onCreateServiceman=(data,setLoader)=>(dispatch,getState)=>{
     commonAxios("register-worker",data,dispatch)
     .then((res)=>{
         if(res.status){
@@ -34,6 +34,7 @@ export const onCreateServiceman=(data)=>(dispatch,getState)=>{
         }else{
             console.log("failure")
         }
+        setLoader(false)
     })
     .catch((err)=>{
         console.log(err.msg)

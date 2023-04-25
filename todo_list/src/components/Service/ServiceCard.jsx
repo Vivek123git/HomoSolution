@@ -64,6 +64,10 @@ const ServiceCard = () => {
           <div className="service_headinng text-center">
             <h3 style={{ color: "#71a1e9" }}>Book Your Skilled {name} </h3>
           </div>
+          <div className="search_inp">
+            <input type="text"/>
+          </div>
+          
           <Row>
             <Col md={4} className=" p-3 mb-5 bg-white rounded cardBody">
               <Card>
@@ -99,7 +103,7 @@ const ServiceCard = () => {
                         <Card.Title>{elem.heading}</Card.Title>
                         <Card.Text>{elem.paragraph}</Card.Text>
                         <div className=" text-center pb-3" style={{display:"flex",justifyContent:"space-between"}} >
-                        <Button variant="primary" onClick={()=>handleClick(elem.heading,elem.workerId)}>Book Now</Button>
+                        <Button variant="primary" onClick={()=>handleClick(elem.heading,elem.workerId)}>{id==="2"?"Book Now":"Get Serviceworker Details"}</Button>
                         {id==="2"?<Button style={{float:"right"}}>Price {elem.price}</Button>:""}
                         </div>
                       </Card.Body>

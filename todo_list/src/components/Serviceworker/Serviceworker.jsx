@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import "./Serviceworker.css";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
 import { fetchSubServicesData, onCreateServiceman } from "../../Action/ServiceAction";
 import { useNavigate } from "react-router";
 import Multiselect from "multiselect-react-dropdown";
+import CircularProgress from '@mui/material/CircularProgress';
+import TextField from '@material-ui/core/TextField';
 
 function ServiceWorker() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function ServiceWorker() {
     cnfPassword: "",
   });
   const [servicesData, setServicesData] = useState([]);
+  const [loader,setLoader] = useState(false)
 
   const options = [
     { name: "Option 1", id: 1 },
@@ -90,7 +92,8 @@ function ServiceWorker() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(onCreateServiceman(formData));
+    setLoader(true)
+    dispatch(onCreateServiceman(formData,setLoader));
   };
 
   useEffect(()=>{
@@ -275,9 +278,23 @@ function ServiceWorker() {
                       }}
                     >
                       Create Account
+                      {loader?<CircularProgress className="spinner_icon" style={{color:"white",height:"30px",width:"30px"}}/>:""}
                     </Button>
                   </div>
                 </Form>
+                <div>
+      <TextField 
+        variant="outlined" 
+        margin="normal" 
+        fullWidth
+        label="OTP" 
+        inputProps={{
+          maxLength: 4,
+          style: { textAlign: 'center' }
+        }}
+        // onChange={props.onChange}
+      />
+    </div>
               </div>
             </div>
           </div>

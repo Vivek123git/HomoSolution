@@ -33,7 +33,6 @@ function Header() {
                 <Carousel.Caption>
                   <h3>Electrician</h3>
                   <p>The Best Solution of your all Home problem</p>
-                  <button className="btn">Book Now</button>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item>
@@ -45,7 +44,6 @@ function Header() {
                 <Carousel.Caption>
                   <h3>Plumbers</h3>
                   <p>The Best Solution of your all Home problem.</p>
-                  <button className="btn">Book Now</button>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item>
@@ -57,7 +55,6 @@ function Header() {
                 <Carousel.Caption>
                   <h3>A.C. Technician</h3>
                   <p>The Best Solution of your all Home problem.</p>
-                  <button className="btn">Book Now</button>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
-import { fetchSubServicesData, onCreateServiceman } from "../../Action/ServiceAction";
+import { fetchSubServicesData,onFetchServices, onCreateServiceman } from "../../Action/ServiceAction";
 import { useNavigate } from "react-router";
 import Multiselect from "multiselect-react-dropdown";
 import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@material-ui/core/TextField';
+import Otp from "./OTP/Otp";
 
 function ServiceWorker() {
   const navigate = useNavigate();
@@ -24,38 +25,36 @@ function ServiceWorker() {
     cnfPassword: "",
   });
   const [servicesData, setServicesData] = useState([]);
+  const [skill,setSkill] = useState([])
   const [loader,setLoader] = useState(false)
+  const [otp,setOtp] = useState(false)
 
-  const options = [
-    { name: "Option 1", id: 1 },
-    { name: "Option 2", id: 2 },
-    { name: "Option 4", id: 4 },
-    { name: "Option 5", id: 5 },
-    { name: "Option 8", id: 8 },
-    { name: "Option 29", id: 9 }
-  ];
-
-  const [selectedValues, setSelectedValues] = useState([]);
+  
+  const options = skill.map((elem) => ({ name: elem.heading, id: elem.id }));
 
   function onSelect(selectedList, selectedItem) {
-    setSelectedValues(selectedList);
-    console.log(`Selected List: ${selectedList}`);
-    console.log(`Selected Item: ${selectedItem}`);
+    setForm({...form,skills:selectedList})
+    // setSelectedValues(selectedList);
+    // console.log(`Selected List: ${selectedList}`);
+    // console.log(`Selected Item: ${selectedItem}`);
   }
+  
 
   function onRemove(selectedList, removedItem) {
-    setSelectedValues(selectedList);
-    console.log(`Selected List: ${selectedList}`);
-    console.log(`Removed Item: ${removedItem}`);
+    setForm({...form,skills:selectedList.id})
+    // setSelectedValues(selectedList);
+    // console.log(`Selected List: ${selectedList}`);
+    // console.log(`Removed Item: ${removedItem}`);
   }
 
-  console.log(form.service);
   const handleSelect = (e) => {
     const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
+      skills:[]
     });
+    
   };
 
   const handlehange = (e) => {
@@ -65,15 +64,13 @@ function ServiceWorker() {
       [name]: value,
     });
     const file = e.target.files[0];
-    console.log(file, "file");
+  
     if (name === "image") {
       if (file) {
-        console.log("first");
         setForm({ ...form, img: file });
       }
     } else if (name === "aadhar") {
       if (file) {
-        console.log("first");
         setForm({ ...form, aadhar: file });
       }
     }
@@ -83,23 +80,34 @@ function ServiceWorker() {
 
   formData.append("name", form.name);
   formData.append("service", form.service);
-  formData.append("skill", form.skills);
+  formData.append("skill", JSON.stringify(form.skills));
   formData.append("mobile", form.mobile);
   formData.append("address", form.address);
   formData.append("password", form.password);
   formData.append("image", form.img);
   formData.append("file", form.aadhar);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoader(true)
-    dispatch(onCreateServiceman(formData,setLoader));
-  };
+  let formDataFetch = new FormData(); 
+  formDataFetch.append("id",form.service ); 
 
   useEffect(()=>{
-    let data={}
-   dispatch(fetchSubServicesData(data,setServicesData))
+   dispatch(fetchSubServicesData(formDataFetch,setSkill))
+  },[form.service])
+
+  useEffect(()=>{
+    dispatch(onFetchServices(setServicesData,{}))
   },[])
+
+  const handleSubmit = (e,type) => {
+    console.log(type,"type")
+    e.preventDefault();
+    if(type==="submit"){ 
+    setLoader(true)
+     dispatch(onCreateServiceman(formData,setLoader));
+    }else if (type==="otp"){
+       setOtp(true)
+    }
+  };
 
   return (
     <>
@@ -122,7 +130,7 @@ function ServiceWorker() {
           <div className="row justify-content-center">
             <div className="col-md-12">
               <div className="create_page ">
-                <Form onSubmit={handleSubmit}>
+                <Form >
                   <div className="row">
                     <div className="col-md-6 p-2">
                       <Form.Group
@@ -156,12 +164,13 @@ function ServiceWorker() {
                         />
                         <Button
                           variant="primary"
-                          type="submit"
+                          type="otp"
                           style={{
                             float: "right",
                             padding: "5px",
                             marginTop: "20px",
                           }}
+                          onClick={(e)=>handleSubmit(e,"otp")}
                         >
                           OTP send
                         </Button>
@@ -178,12 +187,11 @@ function ServiceWorker() {
                           onChange={handleSelect}
                         >
                           <option value="">Select an option</option>
-                          <option value={1}>Electrician</option>
-                          <option value={2}>Plumbing</option>
-                          <option value={3}>AC Technician</option>
-                          <option value={4}>RO Services</option>
-                          <option value={5}>CCTV Services</option>
-                          <option value={6}>BroadBand Services</option>
+                          {servicesData.map((elem,id)=>{
+                            return(
+                              <option value={elem.id}>{elem.type}</option>
+                            )
+                          })}
                         </Form.Control>
                       </Form.Group>
                     </div>
@@ -192,7 +200,7 @@ function ServiceWorker() {
                         <Form.Label>Choose Your Skills</Form.Label>
                         <Multiselect
                           options={options}
-                          selectedValues={selectedValues}
+                          selectedValues={form.skills}
                           onSelect={onSelect}
                           onRemove={onRemove}
                           displayValue="name"
@@ -276,6 +284,7 @@ function ServiceWorker() {
                         height: "60px",
                         margin: "25px auto",
                       }}
+                      onClick={(e)=>handleSubmit(e,"submit")}
                     >
                       Create Account
                       {loader?<CircularProgress className="spinner_icon" style={{color:"white",height:"30px",width:"30px"}}/>:""}
@@ -283,22 +292,13 @@ function ServiceWorker() {
                   </div>
                 </Form>
                 <div>
-      <TextField 
-        variant="outlined" 
-        margin="normal" 
-        fullWidth
-        label="OTP" 
-        inputProps={{
-          maxLength: 4,
-          style: { textAlign: 'center' }
-        }}
-        // onChange={props.onChange}
-      />
-    </div>
+      
+               </div>
               </div>
             </div>
           </div>
         </div>
+        <Otp otp={otp} setOtp={setOtp}/>
       </section>
     </>
   );

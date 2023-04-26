@@ -25,6 +25,12 @@ const AuthReducer = (state = initialState, action) => {
         draftState.isAuthenticated = false;
         draftState.error = action.error;
       });
+
+    case "LOG_OUT_USER":
+      return produce(state,(draftState)=>{
+        draftState.isAuthenticated = false;
+        draftState.user = false;
+      })  
     default:
       return state;
   }

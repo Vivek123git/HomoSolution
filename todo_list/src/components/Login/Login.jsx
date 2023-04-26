@@ -7,7 +7,9 @@ import "../../../src/App.css";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { loginAccount } from "../../Action/AuthAction";
+import { onSetAlert } from "../../Action/AlertAction";
 import { useDispatch } from "react-redux";
+import { CircularProgress } from "@mui/material";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,8 +19,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
-  console.log(formData,"fihdc")
+const [loader,setLoader] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,19 +42,27 @@ const Login = () => {
   formDataLogin.append("password",formData.password)
 
   const handleSubmit = (e) => {
+    setLoader(true)
     e.preventDefault();
+   
     axios
       .post("https://onehomesolution.000webhostapp.com/login-user", formDataLogin, {
         options,
       })
       .then((res) => {
         if (res.data.status) {
-          console.log(res);
+          console.log(res.data);
           const data = res.data;
           dispatch({ type: "LOGIN_SUCCESS", payload: data });
           navigate("/home");
+          dispatch(onSetAlert("success",res.data.message))
+          setLoader(false)
+        }else{
+          dispatch(onSetAlert("danger",res.data.message))
+          setLoader(false)
         }
       })
+      
       .catch((error) => {
         console.log(error);
       });
@@ -150,10 +159,11 @@ const Login = () => {
                             type="submit"
                             style={{
                               width: "36%",
-                              height: "60px",
+                              height: "60px",display:"flex",justifyContent:"space-around",alignItems:"center"
                             }}
                           >
                             Submit
+                            {loader?<CircularProgress className="spinner_icon" style={{color:"white",height:"30px",width:"30px",position:'inherit'}}/>:""}
                           </Button>
                         </div>
                       </div>

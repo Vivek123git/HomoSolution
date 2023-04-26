@@ -1,7 +1,7 @@
  import produce from "immer";
 
 const initialState={
-    msg:""
+    
 }
 
 export const AlertReducer = (state = initialState, action) => {

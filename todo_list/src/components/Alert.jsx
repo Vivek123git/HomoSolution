@@ -3,7 +3,7 @@ import Alert from '@mui/material/Alert';
 import { useSelector } from 'react-redux';
 
 const Alert1 = () => {
-    const [showAlert, setShowAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState(true);
     const alert = useSelector((state) => state.alert);
    
 
@@ -24,11 +24,12 @@ const Alert1 = () => {
 
     return (
         <div style={{position:"absolute",right:"0px" ,zIndex:"999",margin:"5px"}}>
-            {showAlert && (
-                <Alert variant="filled" severity={alert.status} style={{padding:"5px"}}>
-                    {alert.msg}
-                </Alert>
-            )}
+            {
+              showAlert?<Alert variant="filled" severity={alert.status} style={{padding:"5px"}}>
+              {alert.msg}
+          </Alert>
+          :""
+            }
         </div>
     );
 };

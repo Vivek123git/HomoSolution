@@ -42,6 +42,9 @@ export const loginAccount = (formData, navigate) => (dispatch, getState) => {
     });
 };
 
+export const logOutUser=()=>(dispatch, getState)=>{
+    dispatch({type:"LOG_OUT_USER"})
+}
 
 
   

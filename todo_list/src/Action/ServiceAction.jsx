@@ -89,11 +89,12 @@ export const onFetchWorkerData=(setWorkerData,data)=>(dispatch,getState)=>{
 
 // ServiceWorker Acoount create page..................................................
 
-export const fetchSubServicesData=(data,setServicesData)=>(dispatch,getState)=>{
-    commonAxios("",data,dispatch,getState)
+export const fetchSubServicesData=(data,setSkill)=>(dispatch,getState)=>{
+    commonAxios("fetch-service-type",data,dispatch,getState)
     .then((res)=>{
         if(res.status){
-            setServicesData(res.data)
+           
+            setSkill(res.data)
         }
     })
     .catch((err)=>{

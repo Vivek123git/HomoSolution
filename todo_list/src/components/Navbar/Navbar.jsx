@@ -9,6 +9,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { onFetchServices } from "../../Action/ServiceAction";
+import { logOutUser } from "../../Action/AuthAction";
 import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 
@@ -53,7 +54,7 @@ function NavbarHead() {
   };
 
   const handleSignOut = () => {
-    localStorage.clear();
+    dispatch(logOutUser())
   };
 
   useEffect(() => {

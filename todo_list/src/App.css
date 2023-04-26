@@ -896,3 +896,7 @@ swiper-slide img {
     position: absolute;
     margin-left: 40px
 }
+
+.chip{
+  height: 45px !important;
+}

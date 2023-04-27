@@ -99,7 +99,6 @@ function ServiceWorker() {
   },[])
 
   const handleSubmit = (e,type) => {
-    console.log(type,"type")
     e.preventDefault();
     if(type==="submit"){ 
     setLoader(true)

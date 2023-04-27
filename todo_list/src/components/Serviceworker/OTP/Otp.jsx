@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Otp.css";
-
+import { Button } from "react-bootstrap";
 const Otp=({ otp ,setOtp}) =>{
     console.log(otp,"otp")
   const [otpState, setOtpState] = useState("");
@@ -29,8 +29,6 @@ const Otp=({ otp ,setOtp}) =>{
 
   return (
     <div>
-      <button onClick={otp}>CLick me</button>
-      
       {otp ? (
         <div className="modal">
           <div className="modal-content">
@@ -65,7 +63,7 @@ const Otp=({ otp ,setOtp}) =>{
               {error && <p className="error">{error}</p>}
               <button type="submit">Verify</button>
             </form>
-            <button onClick={handleClose}>Close me</button>
+            <Button className="otp_btn" onClick={handleClose}>Close me</Button>
           </div>
         </div>
       ) : (

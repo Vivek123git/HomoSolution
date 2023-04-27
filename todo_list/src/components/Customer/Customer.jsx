@@ -34,7 +34,7 @@ function Services() {
                   <div className="service-col">
                     <div className="service-img-wrapper">
                       <img
-                        src="https://via.placeholder.com/500x300.png"
+                        src="https://img.freepik.com/free-photo/close-up-portrait-nice-cute-adorable-smiling-charming-cheerful-girl-pointing-with-her-index-finger_176532-7923.jpg?w=996&t=st=1682613125~exp=1682613725~hmac=f23961e5b76dcfb937adbf1fc165a3c9f8249f7daba3d619907e46e6b559289a"
                         alt="Service 1"
                         className="service-img"
                       />
@@ -55,7 +55,7 @@ function Services() {
                   <div className="service-col">
                     <div className="service-img-wrapper">
                       <img
-                        src="https://via.placeholder.com/500x300.png"
+                        src="https://img.freepik.com/free-photo/girl-inviting-grab-bite-pointing-left-local-cafe-smiling-friendly-asking-friend-out-standing-positive-lucky-white-background-hold-hand-pocket-casually-talking-informal-conversation_176420-34954.jpg?w=996&t=st=1682613160~exp=1682613760~hmac=ed1b8f71c5f81463554022fed716bab2bd9733ef08ba890334b64495188cd154"
                         alt="Service 1"
                         className="service-img"
                       />
@@ -76,7 +76,7 @@ function Services() {
                   <div className="service-col">
                     <div className="service-img-wrapper">
                       <img
-                        src="https://via.placeholder.com/500x300.png"
+                        src="https://img.freepik.com/free-photo/girl-inviting-grab-bite-pointing-left-local-cafe-smiling-friendly-asking-friend-out-standing-positive-lucky-white-background-hold-hand-pocket-casually-talking-informal-conversation_176420-34954.jpg?w=996&t=st=1682613160~exp=1682613760~hmac=ed1b8f71c5f81463554022fed716bab2bd9733ef08ba890334b64495188cd154"
                         alt="Service 1"
                         className="service-img"
                       />
@@ -97,7 +97,7 @@ function Services() {
                   <div className="service-col">
                     <div className="service-img-wrapper">
                       <img
-                        src="https://via.placeholder.com/500x300.png"
+                        src="https://img.freepik.com/free-photo/excited-stylish-curly-haired-girl-sunglasses-pointing-right-showing-way_176420-20194.jpg?w=996&t=st=1682613227~exp=1682613827~hmac=78f62ad8451b90c1f9ae1a193843f62fc39e7b230b8d70fd120c3d9ba0ddac60"
                         alt="Service 1"
                         className="service-img"
                       />
@@ -118,7 +118,7 @@ function Services() {
                   <div className="service-col">
                     <div className="service-img-wrapper">
                       <img
-                        src="https://via.placeholder.com/500x300.png"
+                        src="https://img.freepik.com/free-photo/excited-stylish-curly-haired-girl-sunglasses-pointing-right-showing-way_176420-20194.jpg?w=996&t=st=1682613227~exp=1682613827~hmac=78f62ad8451b90c1f9ae1a193843f62fc39e7b230b8d70fd120c3d9ba0ddac60"
                         alt="Service 1"
                         className="service-img"
                       />

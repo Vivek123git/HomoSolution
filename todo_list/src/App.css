@@ -897,6 +897,23 @@ swiper-slide img {
     margin-left: 40px
 }
 
+@media (max-width: 767px) {
+  .spinner_icon{
+    width: 30px;
+  height: 30px;
+  color: white;
+  position: absolute;
+  margin-left: 5px
+}
+}
+
 .chip{
   height: 45px !important;
+}
+
+
+@media (max-width: 767px) {
+  .otp_btn{
+  margin-left: 80px;
+  }
 }

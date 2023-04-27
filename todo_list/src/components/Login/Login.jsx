@@ -65,6 +65,7 @@ const [loader,setLoader] = useState(false)
       
       .catch((error) => {
         console.log(error);
+        setLoader(false)
       });
     // dispatch(loginAccount(formDataLogin,navigate))
   };

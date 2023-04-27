@@ -16,14 +16,14 @@ import { useDispatch } from "react-redux";
 import { onfetchUserrDetails } from "../Action/ServiceAction";
 
 const UserProfile = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [rating, setRating] = useState({
     name: "",
     text: "",
     rate: "",
   });
 
-  const [user,setUser] = useState([])
+  const [user, setUser] = useState([]);
   const [image, setImage] = useState(
     "https://img.freepik.com/free-vector/repair-elements-round-template_1284-37691.jpg?w=740&t=st=1680349046~exp=1680349646~hmac=01f506fa402adb9a53b74df1f76fa944ac021ca14fcf1875cc7ead5d08f6cb62"
   );
@@ -37,7 +37,18 @@ const UserProfile = () => {
     };
   };
 
-  const handleChange = () => {};
+  const handleChange = (event) => {
+    const { name, value } = event.target || {};
+    if (name === "rate") {
+      setRating({ ...rating, rate: parseInt(event) });
+    } else {
+      setRating({ ...rating, [name]: value });
+    }
+  };
+  
+  
+
+  console.log(rating, "rate");
 
   const handleSubmit = () => {};
 
@@ -45,13 +56,13 @@ const UserProfile = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const fetchUserDetails=()=>{
-    dispatch(onfetchUserrDetails(setUser))
-  }
+  const fetchUserDetails = () => {
+    dispatch(onfetchUserrDetails(setUser));
+  };
 
-  useEffect(()=>{
-    fetchUserDetails()
-  },[])
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
 
   return (
     <>
@@ -81,7 +92,7 @@ const UserProfile = () => {
                   md={4}
                   style={{ display: "flex", justifyContent: "flex-end" }}
                 >
-                 <div>
+                  <div>
                     <img
                       style={{ maxWidth: "200px" }}
                       src={image}
@@ -90,7 +101,7 @@ const UserProfile = () => {
                     />
                     <br />
                     <input
-                      style={{display:"none", marginLeft:"40px" }}
+                      style={{ display: "none", marginLeft: "40px" }}
                       id="upload-photo"
                       name="upload-photo"
                       type="file"
@@ -107,53 +118,53 @@ const UserProfile = () => {
               <Row>
                 <Col>
                   <h2>Booking Status</h2>
-                  <div className="userTable" style={{overflow:"auto"}}>
-                  <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th>Booking ID</th>
-                        <th>ServiceWorker Name</th>
-                        <th>ServiceWorker Mobile No.</th>
-                        <th>Services</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Rating</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Service 1</td>
-                        <td>123456789</td>
-                        <td>Elctrician</td>
-                        <td>2023-04-02</td>
-                        <td>Pending</td>
-                        <td>
-                          <button onClick={handleShow}>Rating</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Service 2</td>
-                        <td>123456789</td>
-                        <td>Plumber</td>
-                        <td>2023-04-03</td>
-                        <td>Completed</td>
-                        <td>******</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Service 3</td>
-                        <td>123456789</td>
-                        <td>Elctrician</td>
-                        <td>2023-04-04</td>
-                        <td>Cancelled</td>
-                        <td>******</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <div className="userTable" style={{ overflow: "auto" }}>
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th>Booking ID</th>
+                          <th>ServiceWorker Name</th>
+                          <th>ServiceWorker Mobile No.</th>
+                          <th>Services</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Service 1</td>
+                          <td>123456789</td>
+                          <td>Elctrician</td>
+                          <td>2023-04-02</td>
+                          <td>Pending</td>
+                          <td>
+                            <button onClick={handleShow}>Rating</button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Service 2</td>
+                          <td>123456789</td>
+                          <td>Plumber</td>
+                          <td>2023-04-03</td>
+                          <td>Completed</td>
+                          <td>******</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Service 3</td>
+                          <td>123456789</td>
+                          <td>Elctrician</td>
+                          <td>2023-04-04</td>
+                          <td>Cancelled</td>
+                          <td>******</td>
+                        </tr>
+                      </tbody>
+                    </Table>
                   </div>
-           </Col>
+                </Col>
               </Row>
               <>
                 <Modal show={show} onHide={handleClose}>
@@ -166,6 +177,7 @@ const UserProfile = () => {
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                           type="text"
+                          name="name"
                           value={rating.name}
                           onChange={handleChange}
                         />
@@ -175,6 +187,7 @@ const UserProfile = () => {
                         <Form.Control
                           as="textarea"
                           rows={3}
+                          name="text"
                           value={rating.text}
                           onChange={handleChange}
                         />
@@ -185,6 +198,7 @@ const UserProfile = () => {
                         <Rating
                           count={5}
                           size={24}
+                          name="rate"
                           activeColor="#ffd700"
                           value={rating.rate}
                           onChange={handleChange}

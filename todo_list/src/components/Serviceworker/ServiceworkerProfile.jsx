@@ -3,11 +3,12 @@ import Switch from "@mui/material/Switch";
 import { Row, Col, Image, Table } from "react-bootstrap";
 import Navbar from "../Navbar/Navbar";
 import { onfetchWorkerDetails } from "../../Action/ServiceAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 const ServiceWorkerProfile = () => {
   const dispatch = useDispatch();
+  const workerDetails = useSelector((state) => state.workerAcc);
 
   const [checked, setChecked] = useState(false);
   const [status, setStatus] = useState("Available");
@@ -64,8 +65,8 @@ const ServiceWorkerProfile = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <h5>Name : John Doe</h5>
-                  <p>Mobile No.: 1234567890</p>
+                  <h5>Name : {workerDetails.worker.name}</h5>
+                  <p>Mobile No.: {workerDetails.worker.mobileNumber}</p>
                   <div className="d-flex">
                     <h5>Status : </h5>
                     <h5
@@ -92,20 +93,28 @@ const ServiceWorkerProfile = () => {
                   <div>
                     <img
                       style={{ maxWidth: "200px" }}
-                      src={image}
+                      src={
+                        workerDetails.worker.image
+                          ? workerDetails.worker.image
+                          : image
+                      }
                       roundedCircle
                       alt="avatar"
                     />
                     <br />
                     <input
-                      style={{display:"none" }}
+                      style={{ display: "none" }}
                       id="upload-photo"
                       name="upload-photo"
                       type="file"
                       accept="image/*"
                       onChange={handleImageChange}
                     />
-                    <label htmlFor="upload-photo" className="d-flex" style={{marginLeft:"40px"}}>
+                    <label
+                      htmlFor="upload-photo"
+                      className="d-flex"
+                      style={{ marginLeft: "40px" }}
+                    >
                       <p>Edit Image</p>
                       <ModeEditIcon style={{ marginTop: "5px" }} />
                     </label>

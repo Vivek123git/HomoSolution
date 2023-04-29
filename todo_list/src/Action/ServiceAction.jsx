@@ -24,12 +24,11 @@ export const onBookingServiceman=(data)=>(dispatch,getState)=>{
     })
 }
 
-export const onCreateServiceman=(data,setLoader)=>(dispatch,getState)=>{
+export const onCreateServiceman=(data,setLoader,navigate)=>(dispatch,getState)=>{
     commonAxios("register-worker",data,dispatch)
     .then((res)=>{
         if(res.status){
-            console.log("success")
-            // setServiceWorker(res,data)
+            navigate("/home")
             dispatch(onSetAlert("success",res.msg))
         }else{
             console.log("failure")
@@ -45,7 +44,6 @@ export const onFetchServices=(setService,data)=>(dispatch,getState)=>{
     axios.get("https://onehomesolution.000webhostapp.com/fetch-service",data,dispatch,{options})
     .then((res)=>{
         if(res.status){
-            console.log("success")
             setService(res.data.data)
         }
     })

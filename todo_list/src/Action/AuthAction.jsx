@@ -23,7 +23,6 @@ export const createAccount = (data, navigate) => (dispatch, getState) => {
 };
 
 export const loginAccount = (formData, navigate) => (dispatch, getState) => {
-  localStorage.clear();
   commonAxios("login-user", formData, dispatch)
     .then((res) => {
       const data = res.data;
@@ -45,6 +44,25 @@ export const loginAccount = (formData, navigate) => (dispatch, getState) => {
 export const logOutUser=()=>(dispatch, getState)=>{
     dispatch({type:"LOG_OUT_USER"})
 }
+
+// export const loginWorkerAccount = (formData, navigate) => (dispatch, getState) => {
+//   commonAxios("login-worker", formData, dispatch)
+//     .then((res) => {
+//       const data = res.data;
+//       if (res.status) {
+//         navigate("/serviceworkerProfile");
+//         //  localStorage.setItem("user", JSON.stringify(res.data));
+//         dispatch({ type: "LOGIN_SUCCESS_WORKER", payload: data });
+//         dispatch(onSetAlert("success",res.msg))
+//       } else {
+//         dispatch({ type: "LOGIN_FAILURE", error: data.error });
+//       }
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       dispatch({ type: "LOGIN_FAILURE", error: error.message });
+//     });
+// };
 
 
   

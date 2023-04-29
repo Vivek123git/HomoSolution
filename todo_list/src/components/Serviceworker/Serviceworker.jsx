@@ -102,7 +102,7 @@ function ServiceWorker() {
     e.preventDefault();
     if(type==="submit"){ 
     setLoader(true)
-     dispatch(onCreateServiceman(formData,setLoader));
+     dispatch(onCreateServiceman(formData,setLoader,navigate));
     }else if (type==="otp"){
        setOtp(true)
     }

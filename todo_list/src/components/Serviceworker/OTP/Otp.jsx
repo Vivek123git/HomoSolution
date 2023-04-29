@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Otp.css";
 import { Button } from "react-bootstrap";
+
 const Otp=({ otp ,setOtp}) =>{
-    console.log(otp,"otp")
   const [otpState, setOtpState] = useState("");
   const [error, setError] = useState("");
 

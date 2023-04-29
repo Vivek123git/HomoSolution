@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Form,
-  Button,
-  Table,
-} from "react-bootstrap";
+import {Container,Row,Col,Image,Form,Button,Table,} from "react-bootstrap";
 import { Modal } from "react-bootstrap";
-import Rating from "react-rating-stars-component";
+import { BsStarFill, BsStar } from "react-icons/bs";
 import Navbar from "./Navbar/Navbar";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { onfetchUserrDetails } from "../Action/ServiceAction";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
+
+  const userDetails = useSelector((state)=>state.login)
+
   const [rating, setRating] = useState({
     name: "",
     text: "",
@@ -37,20 +32,19 @@ const UserProfile = () => {
     };
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target || {};
-    if (name === "rate") {
-      setRating({ ...rating, rate: parseInt(event) });
-    } else {
-      setRating({ ...rating, [name]: value });
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+   
+  setRating((prevState) => ({ ...prevState, [name]: value }));
   };
-  
-  
 
-  console.log(rating, "rate");
+  const handleRatingChange = (newRating) => {
+    setRating((prevState) => ({ ...prevState, rating: newRating }));
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    let data = {...rating,}
+  };
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -84,8 +78,8 @@ const UserProfile = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <h5>Name : John Doe</h5>
-                  <p>Mobile No.: 1234567890</p>
+                  <h5>Name : {userDetails.user.name}</h5>
+                  <p>Mobile No.: {userDetails.user.mobileNumber}</p>
                 </Col>
                 <Col
                   xs={12}
@@ -169,7 +163,7 @@ const UserProfile = () => {
               <>
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
-                    <h1>Rate this</h1>
+                    <h3>Rate ServiceWorker</h3>
                   </Modal.Header>
                   <Modal.Body>
                     <Form onSubmit={handleSubmit}>
@@ -193,16 +187,26 @@ const UserProfile = () => {
                         />
                       </Form.Group>
                       <Form.Group controlId="rating">
-                        <Form.Label>Rating</Form.Label>
-                        <br />
-                        <Rating
-                          count={5}
-                          size={24}
-                          name="rate"
-                          activeColor="#ffd700"
-                          value={rating.rate}
-                          onChange={handleChange}
-                        />
+                        <Form.Label>Rating:</Form.Label>
+                        <Row>
+                          {[...Array(5)].map((_, index) => (
+                            <Col key={index}>
+                              {rating.rating >= index + 1 ? (
+                                <BsStarFill
+                                  className="star cursor-pointer"
+                                  style={{color:"#f5f508" , cursor:"pointer"}}
+                                  onClick={() => handleRatingChange(index + 1)}
+                                />
+                              ) : (
+                                <BsStar
+                                  className="star cursor-pointer"
+                                  style={{ cursor:"pointer"}}
+                                  onClick={() => handleRatingChange(index + 1)}
+                                />
+                              )}
+                            </Col>
+                          ))}
+                        </Row>
                       </Form.Group>
                       <Button variant="primary" type="submit">
                         Submit

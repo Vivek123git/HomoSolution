@@ -21,6 +21,11 @@ function About() {
     <div>
       <NavbarHead />
       <section className="about-section my-4">
+      <div className="d-flex justify-content-center">
+        <h3 className="" style={{ color: "#71a1e9" }}>
+                About Us
+              </h3>
+      </div>
         <Container>
           <Row style={{ padding: "40px" }}>
             <Col md={6}>
@@ -29,9 +34,7 @@ function About() {
               </div>
             </Col>
             <Col md={6}>
-              <h3 className="" style={{ color: "#71a1e9" }}>
-                About Us
-              </h3>
+              
               <p style={{fontSize:"16px",fontFamily:"roboto"}}>
                 Welcome to our website! We are a one-stop-shop for all your home
                 maintenance and repair needs. Whether you need an electrician,

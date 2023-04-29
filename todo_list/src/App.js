@@ -20,8 +20,15 @@ import UserProfile from "./components/UserProfile";
 import ServiceCard from "./components/Service/ServiceCard"
 import ContactUs2 from "./components/ContactUs2";
 import About from "./components/About/About";
+import { useEffect } from "react";
+import { loginAccount } from "./Action/AuthAction";
 
 function App() {
+
+  // useEffect(()=>{
+  //   dispatch(loginAccount)
+  //  },[])
+
   return (
     <div className="App">
       {/* <Header/> */}

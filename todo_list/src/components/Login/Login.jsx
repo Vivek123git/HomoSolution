@@ -45,29 +45,28 @@ const [loader,setLoader] = useState(false)
     setLoader(true)
     e.preventDefault();
    
-    axios
-      .post("https://onehomesolution.000webhostapp.com/login-user", formDataLogin, {
-        options,
-      })
-      .then((res) => {
-        if (res.data.status) {
-          console.log(res.data);
-          const data = res.data;
-          dispatch({ type: "LOGIN_SUCCESS", payload: data });
-          navigate("/home");
-          dispatch(onSetAlert("success",res.data.message))
-          setLoader(false)
-        }else{
-          dispatch(onSetAlert("danger",res.data.message))
-          setLoader(false)
-        }
-      })
+    // axios
+    //   .post("https://onehomesolution.000webhostapp.com/login-user", formDataLogin, {
+    //     options,
+    //   })
+    //   .then((res) => {
+    //     if (res.data.status) {
+    //       const data = res.data;
+    //       dispatch({ type: "LOGIN_SUCCESS", payload: data });
+    //       navigate("/home");
+    //       dispatch(onSetAlert("success",res.data.message))
+    //       setLoader(false)
+    //     }else{
+    //       dispatch(onSetAlert("danger",res.data.message))
+    //       setLoader(false)
+    //     }
+    //   })
       
-      .catch((error) => {
-        console.log(error);
-        setLoader(false)
-      });
-    // dispatch(loginAccount(formDataLogin,navigate))
+    //   .catch((error) => {
+    //     console.log(error);
+    //     setLoader(false)
+    //   });
+     dispatch(loginAccount(formDataLogin,navigate))
   };
 
   return (
@@ -103,7 +102,7 @@ const [loader,setLoader] = useState(false)
             <div className="row justify-content-center">
               <div className="col-md-6">
                 <div className="create_page ">
-                  <h1 style={{ fontSize: "28px" }}>Create Account</h1>
+                  <h1 style={{ fontSize: "28px" }}>Welcome back!</h1>
                   <hr style={{ color: "#0062cc" }} />
                   <Form onSubmit={handleSubmit}>
                     <div className="row">

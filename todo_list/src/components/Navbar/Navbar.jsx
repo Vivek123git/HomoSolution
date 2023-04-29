@@ -3,6 +3,7 @@ import { Navbar, Nav, NavDropdown, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios"
 import "../../../src/App.css";
 import logo from "../../img/HOMOSOLUTION.png";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -10,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { onFetchServices } from "../../Action/ServiceAction";
 import { logOutUser } from "../../Action/AuthAction";
+import { loginWorkerAccount } from "../../Action/WorkerAuth";
 import { useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 
@@ -17,7 +19,6 @@ function NavbarHead() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = JSON.parse(localStorage.getItem("state"));
-  console.log(auth, "auth");
 
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -25,6 +26,7 @@ function NavbarHead() {
   const [form, setForm] = useState({
     mobile: "",
     password: "",
+    type:"ServiceWorker"
   });
 
   const handleShow = () => setShow(true);
@@ -42,10 +44,27 @@ function NavbarHead() {
     navigate("/serviceworker");
   };
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    const {name,value} =  e.target;
+    setForm({
+      ...form,
+    [name]:value
+    })
+  };
 
-  const handleSubmit = () => {
-    navigate("/serviceworkerProfile");
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  let formDataLogin = new FormData();
+  formDataLogin.append("number",form.mobile)
+  formDataLogin.append("password",form.password)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(loginWorkerAccount(formDataLogin,navigate))
   };
 
   const fetchServiceData = () => {
@@ -245,7 +264,8 @@ function NavbarHead() {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Mobile No.</Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
+                  name="mobile"
                   placeholder="Enter Mobile No."
                   value={form.mobile}
                   onChange={handleChange}
@@ -257,6 +277,7 @@ function NavbarHead() {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  name="password"
                   value={form.password}
                   onChange={handleChange}
                 />

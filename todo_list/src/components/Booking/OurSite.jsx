@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import {  useNavigate } from "react-router";
+import {  useLocation, useNavigate } from "react-router";
 import { onBookingServiceman } from "../../Action/ServiceAction";
 import { useDispatch } from "react-redux";
 import Navbar from "../Navbar/Navbar";
@@ -9,6 +9,11 @@ import Navbar from "../Navbar/Navbar";
 function OurSite() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get("name");
+  const type = searchParams.get("type");
 
   const [form, setForm] = useState({
     name: "",
@@ -16,45 +21,18 @@ function OurSite() {
     address: "",
     state: "",
     city: "",
-    service: "",
-    description: "",
+    service:(type?`${type}`:""),
+    description: (name?`${name}`:""),
     near: "",
     pin: "",
   });
 
   const handleSelect = (e) => {
-    const { value } = e.target;
-    if (value === "1") {
-      setForm({
-        ...form,
-        service: "Electrician",
-      });
-    } else if (value === "2") {
-      setForm({
-        ...form,
-        service: "Plumbering",
-      });
-    } else if (value === "3") {
-      setForm({
-        ...form,
-        service: "AC Services",
-      });
-    } else if (value === "4") {
-      setForm({
-        ...form,
-        service: "RO Services",
-      });
-    } else if (value === "5") {
-      setForm({
-        ...form,
-        service: "CCTV Services",
-      });
-    } else if (value === "6") {
-      setForm({
-        ...form,
-        service: "BroadBand Services",
-      });
-    }
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
   };
 
   let data = JSON.stringify({
@@ -83,7 +61,7 @@ function OurSite() {
   };
   return (
     <>
-    <Navbar/>
+    {name?<Navbar/>:""}
     <section className="contact-section ">
       <div className="container">
         <div className="row">
@@ -133,21 +111,24 @@ function OurSite() {
               <div className="col-md-12 p-2">
                 <Form.Group controlId="formService" className="input_wrap ">
                   <Form.Label>Service</Form.Label>
-                  <Form.Control as="select" onChange={handleSelect}>
-                    <option value="">Select an option</option>
-                    <option value={1}>Electrician</option>
-                    <option value={2}>Plumbing</option>
-                    <option value={3}>AC Technician</option>
-                    <option value={4}>RO Services</option>
-                    <option value={5}>CCTV Services</option>
-                    <option value={6}>BroadBand Services</option>
+                  <Form.Control as="select" name="service" onChange={handleSelect}>
+                    {name?<option value="1">{form.service}</option>
+                    :
+                     <>
+                     <option value="">Select a Service</option>
+                     <option value={1}>Electrician</option>
+                     <option value={2}>Plumbing</option>
+                     <option value={3}>AC Technician</option>
+                     <option value={4}>RO Services</option>
+                     <option value={5}>CCTV Services</option>
+                     <option value={6}>BroadBand Services</option></> }
                   </Form.Control>
                 </Form.Group>
               </div>
               <div className="col-md-12 p-2">
                 <Form.Group controlId="formDescription" className="input_wrap ">
                   <Form.Label>
-                    Write a sort Description of your problem
+                    {name?"Service that you want":"Write a sort Description of your problem"}
                   </Form.Label>
                   <Form.Control
                     as="textarea"
@@ -155,6 +136,7 @@ function OurSite() {
                     placeholder="Enter a description"
                     name="description"
                     value={form.description}
+                    readOnly={name ? true : false}
                     onChange={(e) => handlehange(e)}
                   />
                 </Form.Group>

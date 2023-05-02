@@ -8,16 +8,27 @@ const saveToLocalStorage = (data) =>{
     localStorage.setItem('state',state)
 }
 
-const loadFromLocalStorage = ()=>{
-    try{
-        const state = localStorage.getItem('state');
-        if(state === null) return undefined;
-        return JSON.parse(state);
-    }catch (e) {
-        console.log(e)
-        return undefined
+// const loadFromLocalStorage = ()=>{
+//     try{
+//         const state = localStorage.getItem('state');
+//         if(state === null) return undefined;
+//         return JSON.parse(state);
+//     }catch (e) {
+//         console.log(e)
+//         return undefined
+//     }
+// }
+const loadFromLocalStorage = () => {
+    try {
+      const serializedState = localStorage.getItem('state');
+      if (serializedState === null) {
+        return undefined;
+      }
+      return JSON.parse(serializedState);
+    } catch (error) {
+      return undefined;
     }
-}
+  };
 
 const persistedState = loadFromLocalStorage();
 

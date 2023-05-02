@@ -11,17 +11,18 @@ export const loginWorkerAccount = (formData, navigate) => (dispatch, getState) =
   commonAxios("login-worker", formData, dispatch)
     .then((res) => {
       const data = res.data;
+      console.log(data)
       if (res.status) {
-        navigate("/serviceworkerProfile");
         dispatch({ type: "LOGIN_SUCCESS_WORKER", payload: data });
+        navigate("/serviceworkerProfile");
         dispatch(onSetAlert("success",res.msg))
       } else {
         dispatch({ type: "LOGIN_FAILURE_WORKER", error: data.error });
       }
     })
-    .catch((error) => {
-      console.log(error);
-      dispatch({ type: "LOGIN_FAILURE_WORKER", error: error.message });
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: "LOGIN_FAILURE_WORKER", err: err.message });
     });
 };
 

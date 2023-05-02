@@ -30,8 +30,8 @@ const Otp=({ otp ,setOtp}) =>{
   return (
     <div>
       {otp ? (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="otp_modal">
+          <div className="otp_modal-content">
             <h2>Enter OTP</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">

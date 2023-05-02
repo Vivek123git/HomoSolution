@@ -19,10 +19,15 @@ const ByOwn = () => {
   const[workerData, setWorkerData] = useState([])
   // const[workerId,setWorkerId] = useState(id)
 
+  let formData=new FormData();
+  formData.append("id",id)
+  
   const fetchWorkerData=()=>{
-    let data={id:id}
-    dispatch(onFetchWorkerData(setWorkerData,data))
+    
+    dispatch(onFetchWorkerData(setWorkerData,formData))
   }
+
+  console.log(workerData,"data")
 
   useEffect(()=>{
     fetchWorkerData()

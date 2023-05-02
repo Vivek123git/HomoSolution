@@ -59,6 +59,12 @@ a {
   text-decoration: none;
 }
 
+@media (max-width: 767px) {
+ h3{
+  font-size: 16px;
+ }
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -327,6 +333,7 @@ h3::after {
 
 .modal-content{
   margin-top: 20px !important;
+  margin-right: 15px !important;
 }
 
 .col img {
@@ -762,9 +769,7 @@ swiper-slide img {
   border-radius: 10px;
 }
 
-.footer-section {
-  /* margin-bottom: 30px; */
-}
+
 
 .footer h5 {
   font-size: 18px;
@@ -809,6 +814,9 @@ swiper-slide img {
 }
 .ipSaXD{
   background: #71a1e9 !important;
+}
+.cRmLCo{
+  background: #71a1e9 !important
 }
 
 @media screen and (max-width: 568px) {

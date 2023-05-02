@@ -16,8 +16,8 @@ const WorkerReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case "LOGIN_SUCCESS_WORKER":
+      console.log(action.payload,"payload");
         return produce(state, (draftState) => {
-            console.log(action.payload,"sdvsdv")
           draftState.isAuthenticated = true;
           draftState.worker = action.payload;
           draftState.error = null;

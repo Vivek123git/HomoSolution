@@ -13,6 +13,7 @@ import Alert1 from "./Alert";
 import { onSetAlert } from "../Action/AlertAction";
 import team from "../img/team.png.jpg";
 import DemandServices from "./Service/DemandServices";
+import OurSite from "./Booking/OurSite";
 // import HOMOSOLUTION from '../img/HOMOSOLUTION.png'
 
 function Header() {
@@ -102,7 +103,7 @@ function Header() {
               {/* ...................................................................................... */}
               <Customer />
 
-              <Contact />
+              <OurSite />
             </div>
           </div>
         </div>

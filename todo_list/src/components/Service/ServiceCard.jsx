@@ -33,12 +33,12 @@ const ServiceCard = () => {
     dispatch(fetchSubServices(formData, setServices));
   };
 
-  const handleClick = (name, ind) => {
+  const handleClick = (head, ind) => {
     if (id == "1") {
-      navigate(`/byown?name=${name}&id${ind}`);
+      navigate(`/byown?name=${head}&id=${ind}`);
     } else if (id === "2") {
       console.log("first");
-      navigate("/oursite");
+      navigate(`/oursite?name=${head}&type=${name}`);
     }
   };
 
@@ -111,7 +111,6 @@ const ServiceCard = () => {
 
             {filterServices.length > 0 ? (
               filterServices.map((elem, ind) => {
-                console.log(elem, "elem");
                 return (
                   <Col
                     key={ind}
@@ -139,7 +138,7 @@ const ServiceCard = () => {
                           <Button
                             variant="primary"
                             onClick={() =>
-                              handleClick(elem.heading, elem.workerId)
+                              handleClick(elem.heading, elem.id)
                             }
                           >
                             {id === "2"

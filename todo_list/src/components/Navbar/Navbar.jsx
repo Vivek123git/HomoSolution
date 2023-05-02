@@ -206,7 +206,7 @@ function NavbarHead() {
         </Navbar>
       </div>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} centered style={{zIndex:"9999"}}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h3>Enter in ServiceWorker account</h3>
@@ -235,15 +235,16 @@ function NavbarHead() {
         <Modal.Footer>
           <div className="w-100 d-flex flex-column justify-content-center align-items-center">
             <Button
-              variant="success"
+              variant="primary"
               size="lg"
               onClick={handleCreate}
               className="my-2 w-100"
+              style={{marginRight:"0px"}}
             >
               Create account
             </Button>
             <Button
-              variant="primary"
+              variant="success"
               size="lg"
               onClick={handleShow1}
               className="my-2 w-100"

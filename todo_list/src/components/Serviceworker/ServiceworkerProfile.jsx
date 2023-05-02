@@ -45,6 +45,8 @@ const ServiceWorkerProfile = () => {
     fetchWorkerDetails();
   });
 
+  console.log(workerDetails,"details")
+
   return (
     <>
       <Navbar />

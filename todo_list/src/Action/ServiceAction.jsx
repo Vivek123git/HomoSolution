@@ -71,10 +71,12 @@ export const fetchSubServices = (data, setServices) => (dispatch, getState) => {
 // Bown page.....................................................
 
 export const onFetchWorkerData=(setWorkerData,data)=>(dispatch,getState)=>{
-    commonAxios("",data,dispatch,getState)
+    commonAxios("fetch-worker-list",data,dispatch,getState)
     .then((res)=>{
         if(res.status){
             setWorkerData(res.data)
+            const data= res.data
+            dispatch({type:"FETCH_WORKER_LIST",payload:data})
         }else{
 
         }
@@ -126,3 +128,8 @@ export const onfetchUserrDetails=(data,setUser)=>(dispatch,getState)=>{
         console.log(err.msg)
     })
 }
+
+
+
+// No axios........................................................................
+

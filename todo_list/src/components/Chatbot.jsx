@@ -1,9 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import ChatBot from "react-simple-chatbot";
 import ChatIcon from '@mui/icons-material/Chat';
 
 
+
 const ChatBotrobo = () => {
+
+  const [message, setMessage] = useState("");
+
   const steps = [
     {
         id: "1",
@@ -152,6 +156,27 @@ const ChatBotrobo = () => {
       }
   ];
 
+  const handleUserInput = input => {
+    setMessage(input);
+  };
+
+
+  const handleEnd = () => {
+    console.log(message)
+    // Send message to backend API
+    // fetch('/api/chatbot', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ message })
+    // })
+    //   .then(response => {
+    //     // handle response
+    //   })
+    //   .catch(error => {
+    //     // handle error
+    //   });
+  };
+
   return (
     <div className="Container" style={{ backgroundColor: "blue", color: "red" }}>
     <ChatBot
@@ -165,6 +190,8 @@ const ChatBotrobo = () => {
       recognitionEnable={true}
       recognitionLang={"en"}
       recognitionPlaceholder={"Type here..."}
+      handleEnd={handleEnd}
+      userInput={handleUserInput}
     />
   </div>
   )

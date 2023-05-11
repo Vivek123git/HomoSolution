@@ -22,6 +22,7 @@ import ContactUs2 from "./components/ContactUs2";
 import About from "./components/About/About";
 import { useEffect } from "react";
 import { loginAccount } from "./Action/AuthAction";
+import ForgetPasword from "./components/Login/ForgetPassword";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Routes>
           <Route exact path="/create" element={<CreateLogin />} />
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/forget-password" element={<ForgetPasword />} />
          
             <Route exact path="/home" element={<Header />} />
             {/* <Route exact path="/electrician" element={<Electrician />} />

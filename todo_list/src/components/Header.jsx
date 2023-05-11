@@ -28,13 +28,13 @@ function Header() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="https://cdn.pixabay.com/photo/2019/08/22/13/37/electrician-4423534__340.jpg"
+                  src="https://img.freepik.com/free-vector/electricians-infographics-illustration_1284-67695.jpg?w=900&t=st=1683397819~exp=1683398419~hmac=94a3e9739445b4ab2bf8ed2662eb449dbf5189389bb723953b08d61375bd9d84"
                   alt="First slide"
                 />
-                <Carousel.Caption>
+                {/* <Carousel.Caption>
                   <h3>Electrician</h3>
                   <p>The Best Solution of your all Home problem</p>
-                </Carousel.Caption>
+                </Carousel.Caption> */}
               </Carousel.Item>
               <Carousel.Item>
                 <img
@@ -42,10 +42,10 @@ function Header() {
                   src="https://cdn.pixabay.com/photo/2021/04/21/02/43/plumber-6195292__340.png"
                   alt="Second slide"
                 />
-                <Carousel.Caption>
+                {/* <Carousel.Caption>
                   <h3>Plumbers</h3>
                   <p>The Best Solution of your all Home problem.</p>
-                </Carousel.Caption>
+                </Carousel.Caption> */}
               </Carousel.Item>
               <Carousel.Item>
                 <img
@@ -53,10 +53,10 @@ function Header() {
                   src="https://media.istockphoto.com/id/1292780000/vector/air-conditioner-installation-by-service-technicians-at-home.jpg?s=612x612&w=0&k=20&c=urBjtAMHm6eifiOw8r_U1_HU-qOSKUoMm6zZ1hL1LSQ="
                   alt="Third slide"
                 />
-                <Carousel.Caption>
+                {/* <Carousel.Caption>
                   <h3>A.C. Technician</h3>
                   <p>The Best Solution of your all Home problem.</p>
-                </Carousel.Caption>
+                </Carousel.Caption> */}
               </Carousel.Item>
             </Carousel>
           </div>

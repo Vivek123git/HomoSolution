@@ -77,12 +77,12 @@ a:hover {
 /* Carousel */
 
 .carousel .carousel-item {
-  height: 500px;
+  /* height: 500px; */
 }
 
 .carousel-item img {
   object-fit: cover;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .carousel-caption {
@@ -319,10 +319,10 @@ h3::after {
 /* carousel css */
 
 .carousel {
-  height: 100vh;
+  /* height: 100vh; */
 }
 .carousel-inner {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .modal-dialog {
@@ -340,7 +340,7 @@ h3::after {
   height: 90px;
 }
 .carousel .carousel-item {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .carousel-item {
@@ -357,7 +357,13 @@ h3::after {
 
 .carousel-item img {
   object-fit: cover;
-  height: 100%;
+  height: 500px !important;
+}
+@media (max-width: 767px) {
+  .carousel-item img {
+    object-fit: cover;
+    height: 0% !important;
+  }
 }
 
 .carousel-caption {

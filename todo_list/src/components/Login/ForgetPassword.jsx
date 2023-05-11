@@ -10,13 +10,13 @@ import { onSetAlert } from "../../Action/AlertAction";
 import { useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
 
-const Login = () => {
+const ForgetPasword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    email: "",
     password: "",
+    cnfPassword:""
   });
 const [loader,setLoader] = useState(false)
 
@@ -28,44 +28,14 @@ const [loader,setLoader] = useState(false)
     });
   };
 
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
- 
 
   let formDataLogin = new FormData();
-  formDataLogin.append("email",formData.email)
-  formDataLogin.append("password",formData.password)
+  formDataLogin.append("email",formData.password)
+  formDataLogin.append("password",formData.cnfPassword)
 
   const handleSubmit = (e) => {
     setLoader(true)
     e.preventDefault();
-   
-    // axios
-    //   .post("https://onehomesolution.000webhostapp.com/login-user", formDataLogin, {
-    //     options,
-    //   })
-    //   .then((res) => {
-    //     if (res.data.status) {
-    //       const data = res.data;
-    //       dispatch({ type: "LOGIN_SUCCESS", payload: data });
-    //       navigate("/home");
-    //       dispatch(onSetAlert("success",res.data.message))
-    //       setLoader(false)
-    //     }else{
-    //       dispatch(onSetAlert("danger",res.data.message))
-    //       setLoader(false)
-    //     }
-    //   })
-      
-    //   .catch((error) => {
-    //     console.log(error);
-    //     setLoader(false)
-    //   });
-     dispatch(loginAccount(formDataLogin,navigate))
   };
 
   return (
@@ -101,7 +71,7 @@ const [loader,setLoader] = useState(false)
             <div className="row justify-content-center">
               <div className="col-md-6">
                 <div className="create_page ">
-                  <h1 style={{ fontSize: "28px" }}>Welcome back!</h1>
+                  <h1 style={{ fontSize: "28px" }}>Reset Password!</h1>
                   <hr style={{ color: "#0062cc" }} />
                   <Form onSubmit={handleSubmit}>
                     <div className="row">
@@ -111,13 +81,13 @@ const [loader,setLoader] = useState(false)
                           controlId="formMobile"
                           className="input_wrap"
                         >
-                          <Form.Label>Mobile No./Email</Form.Label>
+                          <Form.Label>Password</Form.Label>
                           <Form.Control
                             type="text"
-                            name="email"
-                            value={formData.email}
+                            name="password"
+                            value={formData.password}
                             onChange={handleChange}
-                            placeholder="Enter mobile no./email"
+                            placeholder="Enter password"
                             required
                           />
                         </Form.Group>
@@ -127,13 +97,13 @@ const [loader,setLoader] = useState(false)
                           controlId="formPassword"
                           className="input_wrap"
                         >
-                          <Form.Label>Password</Form.Label>
+                          <Form.Label>Confirm Password</Form.Label>
                           <Form.Control
-                            type="pasword"
-                            name="password"
-                            value={formData.password}
+                            // type="pasword"
+                            name="cnfPassword"
+                            value={formData.cnfPassword}
                             onChange={handleChange}
-                            placeholder="Enter password"
+                            placeholder="Re-enter password"
                             required
                           />
                         </Form.Group>
@@ -141,9 +111,8 @@ const [loader,setLoader] = useState(false)
                       
                       <div className="col-md-12">
                         <div className="login_btn">
-                          <div className="d-flex justify-content-center align-items-baseline">
+                          {/* <div className="d-flex justify-content-center align-items-baseline">
                             <p className="mb-0"> If you dont have account</p>
-                            
                             <Link to="/create">
                             <Button
                               variant="primary"
@@ -153,7 +122,7 @@ const [loader,setLoader] = useState(false)
                               Create
                             </Button>
                             </Link>
-                          </div>
+                          </div> */}
                           <Button
                             variant="primary"
                             type="submit"
@@ -167,7 +136,6 @@ const [loader,setLoader] = useState(false)
                           </Button>
                         </div>
                       </div>
-                      <Link to="/forget-password" className="mb-0 d-flex" style={{flexDirection:"row-reverse",paddingRight:"70px",color:"#0a3f79"}}>Forget password</Link>
                     </div>
                   </Form>
                 </div>
@@ -180,4 +148,4 @@ const [loader,setLoader] = useState(false)
   );
 };
 
-export default Login;
+export default ForgetPasword;

@@ -5,7 +5,6 @@ import HOMOSOLUTION from "../../img/HOMOSOLUTION.png";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../../Action/AuthAction";
-import "./Login.css";
 
 const CreateLogin = () => {
   const navigate = useNavigate();
